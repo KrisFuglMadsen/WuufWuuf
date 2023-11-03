@@ -9,6 +9,7 @@ namespace KennelCarolinekilde.Models
 {
     public class Owner
     {
+        public int OwnerId { get; set; }
         public string FirstName { get; private set; }
         public string LastName { get; private set;}
         public string Adresse { get; private set; }
