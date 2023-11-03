@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace KennelCarolinekilde.Models.Repos
 {
-    internal class RepoBase
+    public abstract class RepoBase
     {
+        public virtual void Create() { }
+        public virtual void Update() { }
+        public virtual void Delete() { } 
+        public virtual void Get() { }
+
     }
 }

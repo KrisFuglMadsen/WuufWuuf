@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace KennelCarolinekilde.Models
 {
-    internal class Title
+    public abstract class TitleBase
     {
+        public string Name { get; private set; }
+        public virtual void Update() { }
+        
     }
 }

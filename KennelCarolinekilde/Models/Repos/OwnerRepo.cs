@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace KennelCarolinekilde.Models.Repos
 {
-    internal class OwnerRepo
+    public class OwnerRepo: RepoBase
     {
+        public List<Owner> Owners { get; set; } = new List<Owner>();
+
     }
+
+
+    //TODO write the logic for for CRUD (inheritance)
+
 }

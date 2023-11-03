@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace KennelCarolinekilde.Models
 {
-    internal class Title
+    public class Title : TitleBase
     {
+        public override void Update() { }
+
+        public override string ToString()
+        {
+            return $"{this.Name}";
+        }
+
+        //TODO write the logic to Update
+
     }
+
 }
