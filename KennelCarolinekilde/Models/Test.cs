@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace KennelCarolinekilde.Models
 {
-    internal class Test
+    public class Test
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+
     }
 }
