@@ -4,13 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KennelCarolinekilde.Views"
-        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" 
+        xmlns:viewModel="clr-namespace:KennelCarolinekilde.ViewModels"
         mc:Ignorable="d"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True"
         Title="MainView" Height="700" Width="1300">
+
+    <Window.DataContext>
+        <viewModel:MainVM/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModel:HomeVM}">
+            <local:HomeView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:BreedingVM}">
+            <local:BreedingView/>
+        </DataTemplate>
+    </Window.Resources>
 
     <Border CornerRadius="10"
             BorderThickness="1">
@@ -29,12 +44,11 @@
                 <ColumnDefinition Width="250"/>
                 <!--Content section-->
                 <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions> 
-            
+            </Grid.ColumnDefinitions>
+
             <!--Navigation Menu-->
             <Border CornerRadius="10,0,0,10"
                     Grid.Column="0">
-
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
                         <GradientStop Color="{StaticResource secondaryBackColor1}" Offset="0"/>
@@ -43,13 +57,11 @@
                 </Border.Background>
 
                 <StackPanel>
-                    
                     <!--Logo-->
                     <StackPanel Orientation="Horizontal"
                             Height="35"
                             Margin="15,25,0,40">
-                        <fa:IconImage Icon="paw"/>                        
-
+                        <fa:IconImage Icon="paw"/>
                         <TextBlock Text="Kennel Carolinekilde´s"
                                    Foreground="{StaticResource titleColor1}"
                                    FontSize="16"
@@ -57,68 +69,64 @@
                                    FontWeight="Medium"
                                    VerticalAlignment="Center"
                                    Margin="10,0,0,0"/>
-
                     </StackPanel>
-                    
+
                     <!--Menu Buttons-->
+                    
+                    <!-- Home btn -->
+                    <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color1}"
+                                 IsChecked="True"
+                                 Command="{Binding ShowHomeViewCommand}"
+                                 >
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Hjem" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <!-- Dogs btn -->
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color1}">
-
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Dog" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Hunde" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>                        
+                        </StackPanel>
                     </RadioButton>
-
+                    <!-- Pedigree btn -->
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color2}">
-
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Clipboard" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Stamtavle" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
-
+                    <!-- Breeding btn -->
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color3}">
-
+                                 Tag="{StaticResource color3}"
+                                 Command="{Binding ShowBreedingViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="MagnifyingGlass" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Find avlspartner" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
-
+                    <!-- Owners btn -->
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color5}">
-
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="User" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Ejere" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
-
+                    <!-- Database btn -->
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color6}">
-
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Database" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Database" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
 
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color6}" Checked="RadioButton_Checked">
-
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Database" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Test" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
-
                 </StackPanel>
-                
-                
-                
             </Border>
 
             <!--Main Section-->
@@ -141,7 +149,7 @@
                         <!--Content section / Child views-->
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    
+
                     <!--Control bar-->
                     <StackPanel x:Name="pnlControlBar"
                                 Grid.Row="0"
@@ -181,45 +189,46 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        
+
                         <!--Caption-->
                         <StackPanel Grid.Column="0"
                                     Orientation="Horizontal"
                                     VerticalAlignment="Center">
-                            
-                            <fa:IconImage Icon="Home"
+
+                            <fa:IconImage Icon="{Binding Icon}"
                                           Height="20"
                                           Width="20"
                                           Foreground="{StaticResource plainTextColor3}"
                                           Margin="35,0,10,0"/>
-                            <TextBlock Text="midlertidig"
+
+                            <TextBlock Text="{Binding Caption}"
                                        Foreground="{StaticResource plainTextColor3}"
                                        FontSize="16"
                                        FontFamily="segoe ui"
                                        FontWeight="Medium"
                                        VerticalAlignment="Center"/>
                         </StackPanel>
-                        
+
                         <!--User options-->
                         <StackPanel Grid.Column="1"
                                     Orientation="Horizontal"
                                     FlowDirection="RightToLeft"
                                     VerticalAlignment="Center"
                                     Margin="0,0,10,0">
-                            
+
                         </StackPanel>
-                        
+
                     </Grid>
 
+                    <!--Content section / Child views-->
+                    <ContentControl 
+                        Content="{Binding CurrentChildView}" 
+                        Grid.Row="2"
+                        Margin="25"
+                    />
+
                 </Grid>
-
             </Border>
-
-
         </Grid>
-        
-        
-    </Border>  
-    
-  
+    </Border>    
 </Window>

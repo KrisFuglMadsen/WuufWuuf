@@ -25,7 +25,6 @@
             </Setter.Value>
         </Setter>
 
-
         <Style.Triggers>
             <!--Mouse Hover Style-->
             <Trigger Property="IsMouseOver" Value="True">
@@ -67,11 +66,8 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
-
-
     <!--Control bar button-->
     <Style x:Key="controlButton" TargetType="Button">
-
         <!--Normal button style-->
         <Setter Property="Width" Value="35" />       
         <Setter Property="Background" Value="Transparent" />
@@ -88,7 +84,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-
 
         <Style.Triggers>
             <!--Mouse Hover Style-->

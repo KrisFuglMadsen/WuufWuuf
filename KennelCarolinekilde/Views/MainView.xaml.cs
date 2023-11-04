@@ -25,7 +25,6 @@ namespace KennelCarolinekilde.Views
         public MainView()
         {
             InitializeComponent();
-            
         }
 
         // to allow us to use the events of the operating system we need to import the 32 to libary
@@ -47,27 +46,22 @@ namespace KennelCarolinekilde.Views
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
         }
 
-
         // the three control buttons events
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
+
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
         }
+
         private void btnMaximize_Click(object sender, RoutedEventArgs e)
         {
             if (this.WindowState == WindowState.Normal)
                 this.WindowState = WindowState.Maximized;
             else this.WindowState = WindowState.Normal;
-        }
-
-        private void RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            DogRepo dogRepo = new DogRepo();
-            dogRepo.GetSingleDog("00144/2006");
         }
     }
 }
