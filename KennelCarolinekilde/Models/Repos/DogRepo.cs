@@ -82,11 +82,11 @@ namespace KennelCarolinekilde.Models.Repos
             //int Age = Int32.Parse(age);
             DateTime ageCalc = DateTime.Now;
             int xYear = ageCalc.Year;
-            xYear -= Int32.Parse(age);            
-            DateOnly AgeDateOfBirth = new DateOnly(xYear, DateTime.Now.Month, DateTime.Now.Day);
-            Debug.WriteLine(AgeDateOfBirth);
+            //xYear -= Int32.Parse(age);            
+            //DateOnly AgeDateOfBirth = new DateOnly(xYear, DateTime.Now.Month, DateTime.Now.Day);
+            //Debug.WriteLine(AgeDateOfBirth);
 
-            string something = $"{xYear}/01/01";
+            string yearDate = $"{xYear}/01/01";
 
             string GetDogsByCriteriaTest = $"GetDogsByCriteriaTest";
             SqlConnection connection = new SqlConnection(connectionString);
@@ -104,7 +104,7 @@ namespace KennelCarolinekilde.Models.Repos
                         //cmd.Parameters.Add("@HZ", System.Data.SqlDbType.NVarChar).Value = hz;
                         //cmd.Parameters.Add("@SP", System.Data.SqlDbType.NVarChar).Value = sp;
                         ////cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = AgeDateOfBirth.ToString();
-                        //cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = something;
+                        //cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = yearDate;
                         //cmd.Parameters.Add("@Sex", System.Data.SqlDbType.NVarChar).Value = 'T';
 
                         cmd.Parameters.Add("@Color", System.Data.SqlDbType.NVarChar).Value = color;
@@ -112,7 +112,7 @@ namespace KennelCarolinekilde.Models.Repos
                         cmd.Parameters.Add("@HD", System.Data.SqlDbType.NVarChar).Value = 'B';
                         cmd.Parameters.Add("@HZ", System.Data.SqlDbType.NVarChar).Value = '0';
                         cmd.Parameters.Add("@SP", System.Data.SqlDbType.NVarChar).Value = '4';
-                        cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = "2005/11/06";
+                        cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = "2000/01/01";
                         cmd.Parameters.Add("@Sex", System.Data.SqlDbType.NVarChar).Value = 'T';
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
