@@ -20,7 +20,7 @@
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModel:HomeVM}">
             <local:HomeView/>
-        </DataTemplate>
+        </DataTemplate> 
 
         <DataTemplate DataType="{x:Type viewModel:BreedingVM}">
             <local:BreedingView/>

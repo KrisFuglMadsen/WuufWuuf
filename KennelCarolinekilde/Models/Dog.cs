@@ -5,6 +5,8 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace KennelCarolinekilde.Models
 {
@@ -28,8 +30,8 @@ namespace KennelCarolinekilde.Models
         public string HZ { get; private set; }
         public string SP { get; private set; }
 
-        public List<Title> Titles { get; private set; }
-        public List<DKK_Title> DKK_Titles { get; private set; }
+        public List<Title> Titles { get; private set; } = new List<Title>();
+        public List<DKK_Title> DKK_Titles { get; private set; } = new List<DKK_Title>();
 
         //---------------------Constructor-----------------------
 
@@ -109,7 +111,20 @@ namespace KennelCarolinekilde.Models
 
         public override string ToString()
         {
-            return $"{this.Name}, {this.PedigreeNr}";
+            string titles = "";
+            foreach (Title title in Titles)
+            {
+                titles += title.ToString() + "\n";
+            }
+
+            foreach (DKK_Title title in DKK_Titles)
+            {
+                titles += title.ToString() + "\n";
+            }
+
+            return $"Navn: {this.Name} \n Stambogsnummer: {this.PedigreeNr} \n Køn: {this.Sex} \n Fødselsdato: {this.DateOfBirth}\n Farve: {this.Color}\n HD: {this.HD}, AD: {this.AD}, HZ: {this.HZ}, SP: {this.SP} \n Titler: {titles}";
+
+
         }
     }
 }
