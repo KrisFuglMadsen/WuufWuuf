@@ -5,8 +5,182 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:KennelCarolinekilde.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="650" d:DesignWidth="800">
     <Grid>
-        <TextBlock>Breeding</TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Search Bar-->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
+            <TextBox Style="{StaticResource searchBar}"/>
+            <Button Style="{StaticResource ctaButton}" Content="Vælg Hund" />
+        </StackPanel>
+        
+        <!-- Selcted Dog and Search-->
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Height="250" Margin="0,25,0,25" HorizontalAlignment="Center">
+            <!-- Selected dog -->
+            <Border Style="{StaticResource card}">
+                <TextBlock
+                    Width="380"                         
+                    TextAlignment="Center"
+                    Padding="3"
+                    TextWrapping="Wrap" 
+                    VerticalAlignment="Center"                    
+                   >
+                    Navn: Hundenavn        
+                    <LineBreak/>
+                    Køn: T
+                    <LineBreak/>
+                    Alder: 3
+                    <LineBreak/>
+                    Farve: Rød
+                    <LineBreak/>
+                    Sundhed: HD: 0, AD: 0, HZ: 0, SP: 0
+                    <LineBreak/> 
+                    Titler: Årets Hund 1946                                       
+                </TextBlock>
+            </Border>
+            
+            <!-- Search Criteria box -->
+            <Border Style="{StaticResource card}" Margin="10,0,0,0">
+                <StackPanel Width="380" Orientation="Vertical">
+                    <TextBlock Margin="0,10,0,20" TextAlignment="Center" Text="Kriterier for partner" Style="{StaticResource headline2}" />
+                    <!-- Search Criteria -->
+                    <StackPanel Orientation="Horizontal">
+                        <!-- Health -->
+                        <StackPanel Orientation="Vertical" Width="120">
+                            <TextBlock TextAlignment="Center" Text="Sundhed" Margin="0,0,0,10" Style="{StaticResource headline2}"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="AD" Width="30" />
+                                <TextBox Text="" Width="80"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <Label Content="HD" Width="30" />
+                                <TextBox Text="" Width="80"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <Label Content="HZ" Width="30"/>
+                                <TextBox Text="" Width="80"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <Label Content="SP" Width="30"/>
+                                <TextBox Text="" Width="80"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <!-- Color -->
+                        <StackPanel Orientation="Vertical" Width="120" Margin="10,0,0,0">
+                            <TextBlock TextAlignment="Center" Text="Farve" Margin="0,0,0,10" Style="{StaticResource headline2}"/>
+                            <CheckBox Content="Tiger"/>
+                            <CheckBox Content="Rød" Margin="0,10,0,0"/>
+                            <CheckBox Content="Hvid" Margin="0,10,0,0"/>
+                        </StackPanel>
+                        <!-- Age -->
+                        <StackPanel Orientation="Vertical" Width="120">
+                            <TextBlock TextAlignment="Center" Text="Alder" Margin="0,0,0,10" Style="{StaticResource headline2}"/>
+                            <TextBox Text=""/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Button Style="{StaticResource ctaButton}" Margin="0,10" Content="Find Partner"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <!-- Possible Partners-->
+        <StackPanel Grid.Row="2" Orientation="Vertical">
+            <TextBlock Text="Mulige Partnere" Style="{StaticResource headline2_alt}"/> 
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center">
+                
+                <Border Style="{StaticResource card}" Width="130">
+                    <TextBlock TextAlignment="Center">
+                        Hund 1
+                        <LineBreak/>
+                        Køn
+                        <LineBreak/>                        
+                        Alder
+                        <LineBreak/>                        
+                        Farve
+                    </TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource card}" Width="130">
+                    <TextBlock TextAlignment="Center">
+                        Hund 2
+                        <LineBreak/>
+                        Køn
+                        <LineBreak/>                        
+                        Alder
+                        <LineBreak/>                        
+                        Farve
+                    </TextBlock>
+                </Border>
+                <Border Style="{StaticResource card}" Width="130">
+                    <TextBlock TextAlignment="Center">
+                        Hund 3
+                        <LineBreak/>
+                        Køn
+                        <LineBreak/>                        
+                        Alder
+                        <LineBreak/>                        
+                        Farve
+                    </TextBlock>
+                </Border>
+                <Border Style="{StaticResource card}" Width="130">
+                    <TextBlock TextAlignment="Center">
+                        Hund 4
+                        <LineBreak/>
+                        Køn
+                        <LineBreak/>                        
+                        Alder
+                        <LineBreak/>                        
+                        Farve
+                    </TextBlock>
+                </Border>
+                <Border Style="{StaticResource card}" Width="130">
+                    <TextBlock TextAlignment="Center">
+                        Hund 5
+                        <LineBreak/>
+                        Køn
+                        <LineBreak/>                        
+                        Alder
+                        <LineBreak/>                        
+                        Farve
+                    </TextBlock>
+                </Border>                
+            </StackPanel>
+            
+            
+        </StackPanel>
+        
+        <!--  Selected Partner -->
+        <StackPanel Grid.Row="3" Height="250">
+            <TextBlock Text="Valgte Partner" Margin="0, 30,0,10"  Style="{StaticResource headline2_alt}"/>
+            <Border Style="{StaticResource card}">
+                <TextBlock
+                    Width="380"                         
+                    TextAlignment="Center"
+                    Padding="3"
+                    TextWrapping="Wrap" 
+                    VerticalAlignment="Center"                    
+                   >
+                    Navn: Hundenavn        
+                    <LineBreak/>
+                    Køn: T
+                    <LineBreak/>
+                    Alder: 3
+                    <LineBreak/>
+                    Farve: Rød
+                    <LineBreak/>
+                    Sundhed: HD: 0, AD: 0, HZ: 0, SP: 0
+                    <LineBreak/> 
+                    Titler: Årets Hund 1946
+                </TextBlock>
+            </Border>
+        </StackPanel>
     </Grid>
+
+
 </UserControl>

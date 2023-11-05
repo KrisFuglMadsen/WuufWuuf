@@ -102,4 +102,16 @@
         <Setter Property="Height" Value="9"/>
     </Style>
 
+    <!-- CTA Button -->
+    <Style x:Key="ctaButton" TargetType="Button">
+        <Setter Property="Width" Value="110"/>
+        <Setter Property="Background" Value="{StaticResource panelActiveColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource plainTextColor3}"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="3" />
+            </Style>
+        </Style.Resources>
+    </Style>
+    
 </ResourceDictionary>
