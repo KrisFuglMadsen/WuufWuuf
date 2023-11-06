@@ -102,23 +102,37 @@ namespace KennelCarolinekilde.Models.Repos
                     using (SqlCommand cmd = new SqlCommand(GetDogsByCriteriaTest, connection))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        // For developing purposes: Finds a Dog
-                        //cmd.Parameters.Add("@Color", System.Data.SqlDbType.NVarChar).Value = "White";
+                        //cmd.Parameters.Add("@Color", System.Data.SqlDbType.NVarChar).Value = color;
+                        //cmd.Parameters.Add("@AD", System.Data.SqlDbType.NVarChar).Value = ad;
+                        //cmd.Parameters.Add("@HD", System.Data.SqlDbType.NVarChar).Value = hd;
+                        //cmd.Parameters.Add("@HZ", System.Data.SqlDbType.NVarChar).Value = hz;
+                        //cmd.Parameters.Add("@SP", System.Data.SqlDbType.NVarChar).Value = sp;
+                        ////cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = AgeDateOfBirth.ToString();
+                        //cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = yearDate;
+                        cmd.Parameters.Add("@color", System.Data.SqlDbType.NVarChar).Value = color;
+                        cmd.Parameters.Add("@ad", System.Data.SqlDbType.NVarChar).Value = ad;
+                        cmd.Parameters.Add("@hd", System.Data.SqlDbType.NVarChar).Value = hd;
+                        cmd.Parameters.Add("@hz", System.Data.SqlDbType.NVarChar).Value = hz;
+                        cmd.Parameters.Add("@sp", System.Data.SqlDbType.NVarChar).Value = sp;
+                        //cmd.parameters.add("@dateofbirth", system.data.sqldbtype.nvarchar).value = agedateofbirth.tostring();
+                        cmd.Parameters.Add("@dateofbirth", System.Data.SqlDbType.NVarChar).Value = something;
+                        cmd.Parameters.Add("@sex", System.Data.SqlDbType.NVarChar).Value = 't';
+
+                        //cmd.Parameters.Add("@Color", System.Data.SqlDbType.NVarChar).Value = "Rg";
+                        //cmd.Parameters.Add("@AD", System.Data.SqlDbType.NVarChar).Value = '0';
                         //cmd.Parameters.Add("@HD", System.Data.SqlDbType.NVarChar).Value = 'C';
-                        //cmd.Parameters.Add("@AD", System.Data.SqlDbType.NVarChar).Value = 'B';
-                        //cmd.Parameters.Add("@HZ", System.Data.SqlDbType.NVarChar).Value = 'A';
-                        //cmd.Parameters.Add("@SP", System.Data.SqlDbType.NVarChar).Value = 'C';
-                        //cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = "2019/01/01";
+                        //cmd.Parameters.Add("@HZ", System.Data.SqlDbType.NVarChar).Value = '1';
+                        //cmd.Parameters.Add("@SP", System.Data.SqlDbType.NVarChar).Value = '0';
+                        //cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = "2000/11/06";
                         //cmd.Parameters.Add("@Sex", System.Data.SqlDbType.NVarChar).Value = 'T';
                         
                         cmd.Parameters.Add("@Color", System.Data.SqlDbType.NVarChar).Value = color;
-                        // Ternary: If the string is empty, set the value as a Database Null. Otherwise use the value
-                        cmd.Parameters.Add("@HD", System.Data.SqlDbType.NVarChar).Value = string.IsNullOrEmpty(hd) ? (object)DBNull.Value : hdValue;
-                        cmd.Parameters.Add("@AD", System.Data.SqlDbType.NVarChar).Value = string.IsNullOrEmpty(ad) ? (object)DBNull.Value : adValue;
-                        cmd.Parameters.Add("@HZ", System.Data.SqlDbType.NVarChar).Value = string.IsNullOrEmpty(hz) ? (object)DBNull.Value : hzValue;
-                        cmd.Parameters.Add("@SP", System.Data.SqlDbType.NVarChar).Value = string.IsNullOrEmpty(sp) ? (object)DBNull.Value : spValue;   
-                        cmd.Parameters.Add("@Sex", System.Data.SqlDbType.NVarChar).Value = sex;
-                        cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = dogAgeDate;
+                        cmd.Parameters.Add("@AD", System.Data.SqlDbType.NVarChar).Value = '0';
+                        cmd.Parameters.Add("@HD", System.Data.SqlDbType.NVarChar).Value = 'B';
+                        cmd.Parameters.Add("@HZ", System.Data.SqlDbType.NVarChar).Value = '0';
+                        cmd.Parameters.Add("@SP", System.Data.SqlDbType.NVarChar).Value = '4';
+                        cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = "2005/11/06";
+                        cmd.Parameters.Add("@Sex", System.Data.SqlDbType.NVarChar).Value = 'T';
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -152,7 +166,8 @@ namespace KennelCarolinekilde.Models.Repos
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }            
+            }
+            MessageBox.Show(Dogs.ToString());
             return Dogs; 
         }
     }

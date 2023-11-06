@@ -84,63 +84,8 @@
         <StackPanel Grid.Row="2" Orientation="Vertical">
             <TextBlock Text="Mulige Partnere" Style="{StaticResource headline2_alt}"/> 
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center">
-                
-                <Border Style="{StaticResource card}" Width="130">
-                    <TextBlock TextAlignment="Center">
-                        Hund 1
-                        <LineBreak/>
-                        Køn
-                        <LineBreak/>                        
-                        Alder
-                        <LineBreak/>                        
-                        Farve
-                    </TextBlock>
-                </Border>
 
-                <Border Style="{StaticResource card}" Width="130">
-                    <TextBlock TextAlignment="Center">
-                        Hund 2
-                        <LineBreak/>
-                        Køn
-                        <LineBreak/>                        
-                        Alder
-                        <LineBreak/>                        
-                        Farve
-                    </TextBlock>
-                </Border>
-                <Border Style="{StaticResource card}" Width="130">
-                    <TextBlock TextAlignment="Center">
-                        Hund 3
-                        <LineBreak/>
-                        Køn
-                        <LineBreak/>                        
-                        Alder
-                        <LineBreak/>                        
-                        Farve
-                    </TextBlock>
-                </Border>
-                <Border Style="{StaticResource card}" Width="130">
-                    <TextBlock TextAlignment="Center">
-                        Hund 4
-                        <LineBreak/>
-                        Køn
-                        <LineBreak/>                        
-                        Alder
-                        <LineBreak/>                        
-                        Farve
-                    </TextBlock>
-                </Border>
-                <Border Style="{StaticResource card}" Width="130">
-                    <TextBlock TextAlignment="Center">
-                        Hund 5
-                        <LineBreak/>
-                        Køn
-                        <LineBreak/>                        
-                        Alder
-                        <LineBreak/>                        
-                        Farve
-                    </TextBlock>
-                </Border>                
+                <DataGrid x:Name="CriteriaDogs"/>
             </StackPanel>
             
             

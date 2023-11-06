@@ -80,7 +80,7 @@ namespace KennelCarolinekilde.Views
             }            
 
             // Getting dogs
-            dogVM.GetDogsByCriteria(AD, HD, HZ, SP, Colors, Age, Sex);
+            CriteriaDogs.ItemsSource = dogVM.GetDogsByCriteria(AD, HD, HZ, SP, Colors, Age);
         }
     }
 }

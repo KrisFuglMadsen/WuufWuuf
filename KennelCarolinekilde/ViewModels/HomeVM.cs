@@ -8,5 +8,7 @@ namespace KennelCarolinekilde.ViewModels
 {
     public class HomeVM : ViewModelBase
     {
+
+
     }
 }
