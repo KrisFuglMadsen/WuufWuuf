@@ -4,13 +4,27 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KennelCarolinekilde.Views"
-        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" 
+        xmlns:viewModel="clr-namespace:KennelCarolinekilde.ViewModels"
         mc:Ignorable="d"
         WindowStyle="None"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
         AllowsTransparency="True"
         Title="MainView" Height="700" Width="1300">
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+    
+    <!--to show the content of each childView we need to add them as window resources-->
+    <Window.Resources>
+
+        <DataTemplate DataType="{x:Type viewModel:DBViewModel}">
+            <local:DBView/>
+        </DataTemplate>
+        
+    </Window.Resources>
 
     <Border CornerRadius="10"
             BorderThickness="1">
@@ -98,7 +112,8 @@
                     </RadioButton>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color6}">
+                                 Tag="{StaticResource color6}"
+                                 Command="{Binding ShowDBViewCommand}">
 
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Database" Style="{StaticResource menuButtonIcon}"/>
@@ -178,12 +193,12 @@
                                     Orientation="Horizontal"
                                     VerticalAlignment="Center">
                             
-                            <fa:IconImage Icon="Home"
+                            <fa:IconImage Icon="{Binding Icon}"
                                           Height="20"
                                           Width="20"
                                           Foreground="{StaticResource plainTextColor3}"
                                           Margin="35,0,10,0"/>
-                            <TextBlock Text="midlertidig"
+                            <TextBlock Text="{Binding Caption}"
                                        Foreground="{StaticResource plainTextColor3}"
                                        FontSize="16"
                                        FontFamily="segoe ui"
@@ -197,10 +212,26 @@
                                     FlowDirection="RightToLeft"
                                     VerticalAlignment="Center"
                                     Margin="0,0,10,0">
+
+                            <Button Style="{StaticResource iconButton}"
+                                    Tag="{StaticResource color7}">
+                                <fa:IconImage Icon="AnglesDown" Style="{StaticResource iconButtonIcon}"/>
+
+                            </Button>
                             
-                        </StackPanel>
+                            <!--Add more user options here-->
+                            
+                        </StackPanel>                       
+                        
                         
                     </Grid>
+                    
+                    <!--Content section / child views-->
+                    <ContentControl Content="{Binding CurrentChildView}"
+                                    Grid.Row="2"
+                                    Margin="25"/>
+
+                    <!--create and add child views and upholde MVVM we need a ViewModelBase Class (14 min https://www.youtube.com/watch?v=76JLBZJR5gE )-->
 
                 </Grid>
 
