@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace KennelCarolinekilde.Models.Repos
 {
     public class DogRepo: RepoBase
     {
-        public List<Dog> dogList { get; private set; } = new List<Dog>();
+        public List<Dog> DogList { get; private set; } = new List<Dog>();
 
         //--------------------Constructor--------------------------------
         public DogRepo() { }
@@ -76,19 +77,25 @@ namespace KennelCarolinekilde.Models.Repos
         //TODO write the logic for GetListOfDogs for all overloads
         public List<Dog> GetListOfDogs(string name, string pedigreeNr) { return null; }
 
-        public List<Dog> GetListOfDogs(string ad, string hd, string hz, string sp, string color, string age) 
-        {
+        public List<Dog> GetListOfDogs(string ad, string hd, string hz, string sp, string color, string age, string sex) 
+        {           
+            // We'll append all found dogs to this list
             List<Dog> Dogs = new List<Dog>();
-            //int Age = Int32.Parse(age);
-            DateTime ageCalc = DateTime.Now;
-            int xYear = ageCalc.Year;
-            //xYear -= Int32.Parse(age);            
-            //DateOnly AgeDateOfBirth = new DateOnly(xYear, DateTime.Now.Month, DateTime.Now.Day);
-            //Debug.WriteLine(AgeDateOfBirth);
+            // Ternary: If the string is empty set is null, otherwise the string value (User input)
+            string? hdValue = string.IsNullOrEmpty(hd) ? null : hd;
+            string? adValue = string.IsNullOrEmpty(ad) ? null : ad;
+            string? hzValue = string.IsNullOrEmpty(hz) ? null : hz;
+            string? spValue = string.IsNullOrEmpty(sp) ? null : sp;
+            // Subtract age from current year
+            int Age = Int32.Parse(age);
+            DateOnly subtractYears = DateOnly.FromDateTime(DateTime.Now).AddYears(-Age);
+            // Format date and convert to string
+            string dogAgeDate = subtractYears.ToString("yyyy/M/dd", CultureInfo.InvariantCulture);
+            
+            Debug.WriteLine(dogAgeDate);
+            Debug.WriteLine(sex);
 
-            string yearDate = $"{xYear}/01/01";
-
-            string GetDogsByCriteriaTest = $"GetDogsByCriteriaTest";
+            string GetDogsByCriteriaTest = $"GetDogsByCriteria";
             SqlConnection connection = new SqlConnection(connectionString);
             using (connection)
             {
@@ -98,22 +105,25 @@ namespace KennelCarolinekilde.Models.Repos
                     using (SqlCommand cmd = new SqlCommand(GetDogsByCriteriaTest, connection))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        //cmd.Parameters.Add("@Color", System.Data.SqlDbType.NVarChar).Value = color;
-                        //cmd.Parameters.Add("@AD", System.Data.SqlDbType.NVarChar).Value = ad;
-                        //cmd.Parameters.Add("@HD", System.Data.SqlDbType.NVarChar).Value = hd;
-                        //cmd.Parameters.Add("@HZ", System.Data.SqlDbType.NVarChar).Value = hz;
-                        //cmd.Parameters.Add("@SP", System.Data.SqlDbType.NVarChar).Value = sp;
-                        ////cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = AgeDateOfBirth.ToString();
-                        //cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = yearDate;
-                        //cmd.Parameters.Add("@Sex", System.Data.SqlDbType.NVarChar).Value = 'T';
 
+                        // For developing purposes: Finds a Dog
+                        //cmd.Parameters.Add("@Color", System.Data.SqlDbType.NVarChar).Value = "White";
+                        //cmd.Parameters.Add("@HD", System.Data.SqlDbType.NVarChar).Value = 'C';
+                        //cmd.Parameters.Add("@AD", System.Data.SqlDbType.NVarChar).Value = 'B';
+                        //cmd.Parameters.Add("@HZ", System.Data.SqlDbType.NVarChar).Value = 'A';
+                        //cmd.Parameters.Add("@SP", System.Data.SqlDbType.NVarChar).Value = 'C';
+                        //cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = "2019/01/01";
+                        //cmd.Parameters.Add("@Sex", System.Data.SqlDbType.NVarChar).Value = 'T';
+                        
                         cmd.Parameters.Add("@Color", System.Data.SqlDbType.NVarChar).Value = color;
-                        cmd.Parameters.Add("@AD", System.Data.SqlDbType.NVarChar).Value = '0';
-                        cmd.Parameters.Add("@HD", System.Data.SqlDbType.NVarChar).Value = 'B';
-                        cmd.Parameters.Add("@HZ", System.Data.SqlDbType.NVarChar).Value = '0';
-                        cmd.Parameters.Add("@SP", System.Data.SqlDbType.NVarChar).Value = '4';
-                        cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = "2000/01/01";
-                        cmd.Parameters.Add("@Sex", System.Data.SqlDbType.NVarChar).Value = 'T';
+                        // Ternary: If the string is empty, set the value as a Database Null. Otherwise use the value
+                        cmd.Parameters.Add("@HD", System.Data.SqlDbType.NVarChar).Value = string.IsNullOrEmpty(hd) ? (object)DBNull.Value : hdValue;
+                        cmd.Parameters.Add("@AD", System.Data.SqlDbType.NVarChar).Value = string.IsNullOrEmpty(ad) ? (object)DBNull.Value : adValue;
+                        cmd.Parameters.Add("@HZ", System.Data.SqlDbType.NVarChar).Value = string.IsNullOrEmpty(hz) ? (object)DBNull.Value : hzValue;
+                        cmd.Parameters.Add("@SP", System.Data.SqlDbType.NVarChar).Value = string.IsNullOrEmpty(sp) ? (object)DBNull.Value : spValue;   
+                        cmd.Parameters.Add("@Sex", System.Data.SqlDbType.NVarChar).Value = sex;
+                        cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = dogAgeDate;
+
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -126,7 +136,7 @@ namespace KennelCarolinekilde.Models.Repos
                                 string mother = (string)reader["Mother"];
                                 DateOnly dateOfbirth = DateOnly.FromDateTime((DateTime)reader["DateOfBirth"]);
                                 decimal hdIndex = (decimal)reader["HDIndex"];
-                                string sex = (string)reader["Sex"];
+                                string dSex = (string)reader["Sex"];
                                 string dColor = (string)reader["Color"];
                                 bool dead = (bool)reader["Dead"];
                                 bool breedstatus = (bool)reader["BreedStatus"];
@@ -137,7 +147,7 @@ namespace KennelCarolinekilde.Models.Repos
                                 string dHz = (string)reader["HZ"];
                                 string dSp = (string)reader["SP"];
 
-                                dog.UpdateDog(name, dPedigreeNr, dateOfbirth, father, mother, hdIndex, sex, color, dead, breedstatus, ownerId, image, hd, ad, hz, sp);
+                                dog.UpdateDog(name, dPedigreeNr, dateOfbirth, father, mother, hdIndex, dSex, color, dead, breedstatus, ownerId, image, hd, ad, hz, sp);
                                 Dogs.Add(dog);
                             }
                         }

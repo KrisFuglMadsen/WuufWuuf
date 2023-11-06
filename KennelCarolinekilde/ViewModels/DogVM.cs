@@ -12,9 +12,9 @@ namespace KennelCarolinekilde.ViewModels
     public class DogVM: ViewModelBase
     {
         DogRepo dogRepo = new DogRepo();
-        public List<Dog> GetDogsByCriteria(string ad, string hd, string hz, string sp, string color, string age)
+        public List<Dog> GetDogsByCriteria(string ad, string hd, string hz, string sp, string color, string age, string sex)
         {
-            List<Dog> dogs = dogRepo.GetListOfDogs(ad, hd, hz, sp, color, age);
+            List<Dog> dogs = dogRepo.GetListOfDogs(ad, hd, hz, sp, color, age, sex);
             return dogs;
         }
 
