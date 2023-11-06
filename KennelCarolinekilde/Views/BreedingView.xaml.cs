@@ -73,8 +73,7 @@ namespace KennelCarolinekilde.Views
             if (selectedDogGender == "T" || selectedDogGender == "F")
             {
                 Sex = "H";
-            }
-                
+            }                
             if (selectedDogGender == "H" || selectedDogGender == "M")
             {
                 Sex = "T";

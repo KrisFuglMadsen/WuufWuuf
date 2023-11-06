@@ -90,10 +90,7 @@ namespace KennelCarolinekilde.Models.Repos
             int Age = Int32.Parse(age);
             DateOnly subtractYears = DateOnly.FromDateTime(DateTime.Now).AddYears(-Age);
             // Format date and convert to string
-            string dogAgeDate = subtractYears.ToString("yyyy/M/dd", CultureInfo.InvariantCulture);
-            
-            Debug.WriteLine(dogAgeDate);
-            Debug.WriteLine(sex);
+            string dogAgeDate = subtractYears.ToString("yyyy/M/dd", CultureInfo.InvariantCulture);            
 
             string GetDogsByCriteriaTest = $"GetDogsByCriteria";
             SqlConnection connection = new SqlConnection(connectionString);
@@ -105,7 +102,6 @@ namespace KennelCarolinekilde.Models.Repos
                     using (SqlCommand cmd = new SqlCommand(GetDogsByCriteriaTest, connection))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-
                         // For developing purposes: Finds a Dog
                         //cmd.Parameters.Add("@Color", System.Data.SqlDbType.NVarChar).Value = "White";
                         //cmd.Parameters.Add("@HD", System.Data.SqlDbType.NVarChar).Value = 'C';
@@ -123,7 +119,6 @@ namespace KennelCarolinekilde.Models.Repos
                         cmd.Parameters.Add("@SP", System.Data.SqlDbType.NVarChar).Value = string.IsNullOrEmpty(sp) ? (object)DBNull.Value : spValue;   
                         cmd.Parameters.Add("@Sex", System.Data.SqlDbType.NVarChar).Value = sex;
                         cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = dogAgeDate;
-
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
