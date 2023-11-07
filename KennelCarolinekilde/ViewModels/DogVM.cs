@@ -17,11 +17,38 @@ namespace KennelCarolinekilde.ViewModels
             List<Dog> dogs = dogRepo.GetListOfDogs(ad, hd, hz, sp, color, age, sex);
             return dogs;
         }
-        public string CreateDog()
+        public string CreateDog(string pedigreeNr, string sex)
         {
             return null;
         }
-
-
+        public string CreateDog(string pedigreeNr, string name, string sex)
+        {
+            return null;
+        }
+        public string CreateDog(string pedigreeNr, string name, string father, string mother, string sex)
+        {
+            return null;
+        }
+        public string CreateDog(string pedigreeNr, string name, string father, string mother, DateOnly dateOfBirth, string sex)
+        {
+            return null;
+        }
+        public string CreateDog(string pedigreeNr, string name, string father, string mother, DateOnly dateOfBirth, string sex, string hdIndex)
+        {
+            return null;
+        }
+        public string CreateDog(string pedigreeNr, string name, string father, string mother, DateOnly dateOfBirth, string sex, string hdIndex, string color)
+        {
+            return null;
+        }
+        public string CreateDog(string pedigreeNr, string name, string father, string mother, DateOnly dateOfBirth, string sex, string hdIndex, string color, bool dead)
+        {
+            return null;
+        }
+        public string CreateDog(string pedigreeNr, string name, string father, string mother, DateOnly dateOfBirth, string sex, string hdIndex, string color, bool dead, bool breedStatus)
+        {
+            return null;
+        }
+        //TODO finish the overloading. Owner image and medical is missing 
     }
 }
