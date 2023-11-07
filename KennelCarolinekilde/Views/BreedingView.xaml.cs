@@ -51,6 +51,7 @@ namespace KennelCarolinekilde.Views
             string HZ = PartnerCriteria_HZ.Text;
             string SP = PartnerCriteria_SP.Text;
             string Age = PartnerCriteria_Age.Text;
+            string sex = "t";
 
             List<string> ColorList = new List<string>();
             if ((bool)SearchPartner_Color_Tiger.IsChecked)
@@ -80,7 +81,7 @@ namespace KennelCarolinekilde.Views
             }            
 
             // Getting dogs
-            CriteriaDogs.ItemsSource = dogVM.GetDogsByCriteria(AD, HD, HZ, SP, Colors, Age);
+            CriteriaDogs.ItemsSource = dogVM.GetDogsByCriteria(AD, HD, HZ, SP, Colors, Age,sex);
         }
     }
 }

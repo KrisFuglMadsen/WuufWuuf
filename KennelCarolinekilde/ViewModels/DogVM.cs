@@ -17,6 +17,10 @@ namespace KennelCarolinekilde.ViewModels
             List<Dog> dogs = dogRepo.GetListOfDogs(ad, hd, hz, sp, color, age, sex);
             return dogs;
         }
+        public string CreateDog()
+        {
+            return null;
+        }
 
 
     }

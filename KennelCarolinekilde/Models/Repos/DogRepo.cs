@@ -22,6 +22,13 @@ namespace KennelCarolinekilde.Models.Repos
 
         //--------------------Methods------------------------------------
 
+        //TODO Write logic creating dog 
+        public string CreateDog()
+        {
+
+            return null;
+        }
+
         //TODO write the logic for GetSingleDog
         public Dog GetSingleDog(string name, string pedigreeNr) { return null; }
         public Dog GetSingleDog(string pedigreeNr) 
@@ -75,7 +82,7 @@ namespace KennelCarolinekilde.Models.Repos
 
 
         //TODO write the logic for GetListOfDogs for all overloads
-        public List<Dog> GetListOfDogs(string name, string pedigreeNr) { return null; }
+        //public List<Dog> GetListOfDogs(string name, string pedigreeNr) { return null; }
 
         public List<Dog> GetListOfDogs(string ad, string hd, string hz, string sp, string color, string age, string sex) 
         {           
@@ -109,13 +116,14 @@ namespace KennelCarolinekilde.Models.Repos
                         //cmd.Parameters.Add("@SP", System.Data.SqlDbType.NVarChar).Value = sp;
                         ////cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = AgeDateOfBirth.ToString();
                         //cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = yearDate;
+
                         cmd.Parameters.Add("@color", System.Data.SqlDbType.NVarChar).Value = color;
                         cmd.Parameters.Add("@ad", System.Data.SqlDbType.NVarChar).Value = ad;
                         cmd.Parameters.Add("@hd", System.Data.SqlDbType.NVarChar).Value = hd;
                         cmd.Parameters.Add("@hz", System.Data.SqlDbType.NVarChar).Value = hz;
                         cmd.Parameters.Add("@sp", System.Data.SqlDbType.NVarChar).Value = sp;
                         //cmd.parameters.add("@dateofbirth", system.data.sqldbtype.nvarchar).value = agedateofbirth.tostring();
-                        cmd.Parameters.Add("@dateofbirth", System.Data.SqlDbType.NVarChar).Value = something;
+                        cmd.Parameters.Add("@dateofbirth", System.Data.SqlDbType.NVarChar).Value = dogAgeDate;
                         cmd.Parameters.Add("@sex", System.Data.SqlDbType.NVarChar).Value = 't';
 
                         //cmd.Parameters.Add("@Color", System.Data.SqlDbType.NVarChar).Value = "Rg";
@@ -126,13 +134,13 @@ namespace KennelCarolinekilde.Models.Repos
                         //cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = "2000/11/06";
                         //cmd.Parameters.Add("@Sex", System.Data.SqlDbType.NVarChar).Value = 'T';
                         
-                        cmd.Parameters.Add("@Color", System.Data.SqlDbType.NVarChar).Value = color;
-                        cmd.Parameters.Add("@AD", System.Data.SqlDbType.NVarChar).Value = '0';
-                        cmd.Parameters.Add("@HD", System.Data.SqlDbType.NVarChar).Value = 'B';
-                        cmd.Parameters.Add("@HZ", System.Data.SqlDbType.NVarChar).Value = '0';
-                        cmd.Parameters.Add("@SP", System.Data.SqlDbType.NVarChar).Value = '4';
-                        cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = "2005/11/06";
-                        cmd.Parameters.Add("@Sex", System.Data.SqlDbType.NVarChar).Value = 'T';
+                        //cmd.Parameters.Add("@Color", System.Data.SqlDbType.NVarChar).Value = color;
+                        //cmd.Parameters.Add("@AD", System.Data.SqlDbType.NVarChar).Value = '0';
+                        //cmd.Parameters.Add("@HD", System.Data.SqlDbType.NVarChar).Value = 'B';
+                        //cmd.Parameters.Add("@HZ", System.Data.SqlDbType.NVarChar).Value = '0';
+                        //cmd.Parameters.Add("@SP", System.Data.SqlDbType.NVarChar).Value = '4';
+                        //cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = "2005/11/06";
+                        //cmd.Parameters.Add("@Sex", System.Data.SqlDbType.NVarChar).Value = 'T';
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
