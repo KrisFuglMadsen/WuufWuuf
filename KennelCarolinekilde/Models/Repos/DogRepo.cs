@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using KennelCarolinekilde.Views;
 using Microsoft.Data.SqlClient;
 using Microsoft.VisualBasic.Logging;
+using System.Configuration;
 
 namespace KennelCarolinekilde.Models.Repos
 {
@@ -23,10 +24,117 @@ namespace KennelCarolinekilde.Models.Repos
         //--------------------Methods------------------------------------
 
         //TODO Write logic creating dog 
-        public string CreateDog()
+        public string CreateDog(string pedigreeNr, string name, string father, string mother, DateOnly dateOfBirth, string sex, 
+            string hdIndex, string color, bool dead, bool breedStatus, string image, string ownerId, string hd, string ad, string hz, string sp)
         {
+            try
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["MyKey"].ConnectionString;
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
 
-            return null;
+                    using (SqlCommand command = new SqlCommand("InsertDogs", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        // Create a DataTable to represent the structured parameter (DogType).
+                        DataTable dogsTable = new DataTable();
+                        dogsTable.Columns.Add("PedigreeNr", typeof(string));
+                        dogsTable.Columns.Add("Name", typeof(string));
+                        dogsTable.Columns.Add("Father", typeof(string));
+                        dogsTable.Columns.Add("Mother", typeof(string));
+                        dogsTable.Columns.Add("DateOfBirth", typeof(DateTime));
+                        dogsTable.Columns.Add("HDIndex", typeof(string));
+                        dogsTable.Columns.Add("Sex", typeof(string));
+                        dogsTable.Columns.Add("Color", typeof(string));
+                        dogsTable.Columns.Add("Dead", typeof(bool));
+                        dogsTable.Columns.Add("BreedStatus", typeof(bool));
+                        dogsTable.Columns.Add("Image", typeof(string));
+                        dogsTable.Columns.Add("OwnerId", typeof(string));
+                        dogsTable.Columns.Add("HD", typeof(string));
+                        dogsTable.Columns.Add("AD", typeof(string));
+                        dogsTable.Columns.Add("HZ", typeof(string));
+                        dogsTable.Columns.Add("SP", typeof(string));
+
+                        // Add a row to the DataTable with the provided data.
+                        DataRow dogRow = dogsTable.NewRow();
+                        dogRow["PedigreeNr"] = pedigreeNr;
+                        dogRow["Name"] = name;
+                        dogRow["Father"] = father;
+                        dogRow["Mother"] = mother;
+                        dogRow["DateOfBirth"] = dateOfBirth.ToString();
+                        dogRow["HDIndex"] = hdIndex;
+                        dogRow["Sex"] = sex;
+                        dogRow["Color"] = color;
+                        dogRow["Dead"] = dead;
+                        dogRow["BreedStatus"] = breedStatus;
+                        dogRow["Image"] = image;
+                        dogRow["OwnerId"] = ownerId;
+                        dogRow["HD"] = hd;
+                        dogRow["AD"] = ad;
+                        dogRow["HZ"] = hz;
+                        dogRow["SP"] = sp;
+
+                        dogsTable.Rows.Add(dogRow);
+
+                        // Set the parameter for the stored procedure.
+                        SqlParameter parameter = command.Parameters.AddWithValue("@Dogs", dogsTable);
+                        parameter.SqlDbType = SqlDbType.Structured;
+                        parameter.TypeName = "DogType";
+
+                        // Execute the stored procedure.
+                        command.ExecuteNonQuery();
+                    }
+                }
+
+                return "Dog record inserted successfully.";
+            }
+            catch (Exception ex)
+            {
+                return "Error: " + ex.Message;
+            }
+        }
+
+        public string CreateDog(string pedigreeNr, string name)
+        {
+            return CreateDog(pedigreeNr, name, null, null, default(DateOnly), null, null, null, false, false, null, null, null, null, null, null);
+        }
+
+        public string DeleteDog(string pedigreeNr)
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["MyKey"].ConnectionString;
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("DeleteDogs", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        //parameter for the PedigreeNr.
+                        command.Parameters.AddWithValue("@PedigreeNr", pedigreeNr);
+
+                        // Execute the stored procedure to delete the dog record.
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            return "Dog record deleted successfully.";
+                        }
+                        else
+                        {
+                            return "Dog record with the specified PedigreeNr not found.";
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return "Error: " + ex.Message;
+            }
         }
 
         //TODO write the logic for GetSingleDog

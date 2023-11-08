@@ -49,6 +49,18 @@ namespace KennelCarolinekilde.ViewModels
         {
             return null;
         }
+        public string CreateDog(string pedigreeNr, string name, string father, string mother, DateOnly dateOfBirth, string sex, string hdIndex, string color, bool dead, bool breedStatus, string image)
+        {
+            return null;
+        }
+        public string CreateDog(string pedigreeNr, string name, string father, string mother, DateOnly dateOfBirth, string sex, string hdIndex, string color, bool dead, bool breedStatus, string image, string ownerId)
+        {
+            return null;
+        }
+        public string CreateDog(string pedigreeNr, string name, string father, string mother, DateOnly dateOfBirth, string sex, string hdIndex, string color, bool dead, bool breedStatus, string image, string ownerId, string hd, string ad, string hz, string sp)
+        {
+            return null;
+        }
         //TODO finish the overloading. Owner image and medical is missing 
     }
 }

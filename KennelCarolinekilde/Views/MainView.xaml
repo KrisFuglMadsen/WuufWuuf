@@ -125,6 +125,23 @@
                             <TextBlock Text="Database" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
+                    
+                    <!-- test for dogs-->
+                    <RadioButton x:Name="DogCreateTest" Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource controlButtonIcon}" Checked="CreateDogTestbtn_clicked">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="NoteSticky" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Dog Create Test" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton x:Name="DogDeleteTest" Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource controlButtonIcon}" Checked="DeleteDaogTestbtn_clicked">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="NoteSticky" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock x:Name="DogDeleteTest1" Text="Dog Delete Test" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
 
                 </StackPanel>
             </Border>

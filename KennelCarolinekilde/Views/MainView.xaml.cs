@@ -63,5 +63,17 @@ namespace KennelCarolinekilde.Views
                 this.WindowState = WindowState.Maximized;
             else this.WindowState = WindowState.Normal;
         }
+
+        private void CreateDogTestbtn_clicked(object sender, RoutedEventArgs e)
+        {
+            DogRepo dogRepo = new DogRepo();
+            MessageBox.Show(dogRepo.CreateDog("3333", "test3"));
+        }
+
+        private void DeleteDaogTestbtn_clicked(object sender, RoutedEventArgs e)
+        {
+            DogRepo dogRepo2 = new DogRepo();
+            MessageBox.Show(dogRepo2.DeleteDog("3333"));
+        }
     }
 }
