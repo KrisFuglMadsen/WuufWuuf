@@ -96,7 +96,6 @@ namespace KennelCarolinekilde.Models.Repos
             }
         }
 
-
         public string DeleteDog(string pedigreeNr)
         {
             try
@@ -214,16 +213,14 @@ namespace KennelCarolinekilde.Models.Repos
                     {
                         // Do not comment this out!!!!!
                         cmd.CommandType = CommandType.StoredProcedure;
-
-
                         cmd.Parameters.Add("@color", System.Data.SqlDbType.NVarChar).Value = color;
-                        cmd.Parameters.Add("@ad", System.Data.SqlDbType.NVarChar).Value = ad;
-                        cmd.Parameters.Add("@hd", System.Data.SqlDbType.NVarChar).Value = hd;
-                        cmd.Parameters.Add("@hz", System.Data.SqlDbType.NVarChar).Value = hz;
-                        cmd.Parameters.Add("@sp", System.Data.SqlDbType.NVarChar).Value = sp;
-                        cmd.Parameters.Add("@dateofbirth", System.Data.SqlDbType.NVarChar).Value = dogAgeDate;
-                        cmd.Parameters.Add("@sex", System.Data.SqlDbType.NVarChar).Value = 't';
-
+                        // Ternary: If the string is empty, set the value as a Database Null. Otherwise use the value
+                        cmd.Parameters.Add("@HD", System.Data.SqlDbType.NVarChar).Value = string.IsNullOrEmpty(hd) ? (object)DBNull.Value : hdValue;
+                        cmd.Parameters.Add("@AD", System.Data.SqlDbType.NVarChar).Value = string.IsNullOrEmpty(ad) ? (object)DBNull.Value : adValue;
+                        cmd.Parameters.Add("@HZ", System.Data.SqlDbType.NVarChar).Value = string.IsNullOrEmpty(hz) ? (object)DBNull.Value : hzValue;
+                        cmd.Parameters.Add("@SP", System.Data.SqlDbType.NVarChar).Value = string.IsNullOrEmpty(sp) ? (object)DBNull.Value : spValue;
+                        cmd.Parameters.Add("@Sex", System.Data.SqlDbType.NVarChar).Value = sex;
+                        cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = dogAgeDate;
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
