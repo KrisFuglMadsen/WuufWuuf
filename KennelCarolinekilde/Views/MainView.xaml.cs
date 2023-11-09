@@ -67,13 +67,13 @@ namespace KennelCarolinekilde.Views
         private void CreateDogTestbtn_clicked(object sender, RoutedEventArgs e)
         {
             DogRepo dogRepo = new DogRepo();
-            MessageBox.Show(dogRepo.CreateDog("3333", "test3"));
+            MessageBox.Show(dogRepo.CreateDog("4444", "test4"));
         }
 
         private void DeleteDaogTestbtn_clicked(object sender, RoutedEventArgs e)
         {
             DogRepo dogRepo2 = new DogRepo();
-            MessageBox.Show(dogRepo2.DeleteDog("3333"));
+            MessageBox.Show(dogRepo2.DeleteDog("4444"));
         }
     }
 }

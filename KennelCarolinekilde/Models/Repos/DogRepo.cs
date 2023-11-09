@@ -24,8 +24,8 @@ namespace KennelCarolinekilde.Models.Repos
         //--------------------Methods------------------------------------
 
         //TODO Write logic creating dog 
-        public string CreateDog(string pedigreeNr, string name, string father, string mother, DateOnly dateOfBirth, string sex, 
-            string hdIndex, string color, bool dead, bool breedStatus, string image, string ownerId, string hd, string ad, string hz, string sp)
+        public string CreateDog(string pedigreeNr, string name, string father= null, string mother = null, DateOnly dateOfBirth = default(DateOnly), string sex = null, 
+            string hdIndex = null, string color = null, bool dead = false, bool breedStatus = false, string image = null, string ownerId = null, string hd = null, string ad = null, string hz = null, string sp = null)
         {
             try
             {
@@ -96,10 +96,6 @@ namespace KennelCarolinekilde.Models.Repos
             }
         }
 
-        public string CreateDog(string pedigreeNr, string name)
-        {
-            return CreateDog(pedigreeNr, name, null, null, default(DateOnly), null, null, null, false, false, null, null, null, null, null, null);
-        }
 
         public string DeleteDog(string pedigreeNr)
         {
@@ -194,7 +190,7 @@ namespace KennelCarolinekilde.Models.Repos
 
         public List<Dog> GetListOfDogs(string ad, string hd, string hz, string sp, string color, string age, string sex) 
         {           
-            // We'll append all found dogs to this list
+            //// We'll append all found dogs to this list
             List<Dog> Dogs = new List<Dog>();
             // Ternary: If the string is empty set is null, otherwise the string value (User input)
             string? hdValue = string.IsNullOrEmpty(hd) ? null : hd;
@@ -216,14 +212,19 @@ namespace KennelCarolinekilde.Models.Repos
                     connection.Open();
                     using (SqlCommand cmd = new SqlCommand(GetDogsByCriteriaTest, connection))
                     {
+                        // Do not comment this out!!!!!
                         cmd.CommandType = CommandType.StoredProcedure;
+
+
+
                         //cmd.Parameters.Add("@Color", System.Data.SqlDbType.NVarChar).Value = color;
                         //cmd.Parameters.Add("@AD", System.Data.SqlDbType.NVarChar).Value = ad;
                         //cmd.Parameters.Add("@HD", System.Data.SqlDbType.NVarChar).Value = hd;
                         //cmd.Parameters.Add("@HZ", System.Data.SqlDbType.NVarChar).Value = hz;
                         //cmd.Parameters.Add("@SP", System.Data.SqlDbType.NVarChar).Value = sp;
                         ////cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = AgeDateOfBirth.ToString();
-                        //cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = yearDate;
+                        //cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = dogAgeDate;
+                        //cmd.Parameters.Add("@sex", System.Data.SqlDbType.NVarChar).Value = 't';
 
                         cmd.Parameters.Add("@color", System.Data.SqlDbType.NVarChar).Value = color;
                         cmd.Parameters.Add("@ad", System.Data.SqlDbType.NVarChar).Value = ad;
@@ -234,21 +235,6 @@ namespace KennelCarolinekilde.Models.Repos
                         cmd.Parameters.Add("@dateofbirth", System.Data.SqlDbType.NVarChar).Value = dogAgeDate;
                         cmd.Parameters.Add("@sex", System.Data.SqlDbType.NVarChar).Value = 't';
 
-                        //cmd.Parameters.Add("@Color", System.Data.SqlDbType.NVarChar).Value = "Rg";
-                        //cmd.Parameters.Add("@AD", System.Data.SqlDbType.NVarChar).Value = '0';
-                        //cmd.Parameters.Add("@HD", System.Data.SqlDbType.NVarChar).Value = 'C';
-                        //cmd.Parameters.Add("@HZ", System.Data.SqlDbType.NVarChar).Value = '1';
-                        //cmd.Parameters.Add("@SP", System.Data.SqlDbType.NVarChar).Value = '0';
-                        //cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = "2000/11/06";
-                        //cmd.Parameters.Add("@Sex", System.Data.SqlDbType.NVarChar).Value = 'T';
-                        
-                        //cmd.Parameters.Add("@Color", System.Data.SqlDbType.NVarChar).Value = color;
-                        //cmd.Parameters.Add("@AD", System.Data.SqlDbType.NVarChar).Value = '0';
-                        //cmd.Parameters.Add("@HD", System.Data.SqlDbType.NVarChar).Value = 'B';
-                        //cmd.Parameters.Add("@HZ", System.Data.SqlDbType.NVarChar).Value = '0';
-                        //cmd.Parameters.Add("@SP", System.Data.SqlDbType.NVarChar).Value = '4';
-                        //cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = "2005/11/06";
-                        //cmd.Parameters.Add("@Sex", System.Data.SqlDbType.NVarChar).Value = 'T';
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
