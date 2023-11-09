@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
+using KennelCarolinekilde.Models.Repos;
 
 namespace KennelCarolinekilde.Views
 {
@@ -61,6 +62,12 @@ namespace KennelCarolinekilde.Views
             if (this.WindowState == WindowState.Normal)
                 this.WindowState = WindowState.Maximized;
             else this.WindowState = WindowState.Normal;
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            DogRepo dogRepo = new DogRepo();
+            dogRepo.GetSingleDog("00144/2006");
         }
     }
 }

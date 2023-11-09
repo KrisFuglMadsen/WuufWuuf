@@ -121,6 +121,15 @@
                         </StackPanel>
                     </RadioButton>
 
+                    <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color6}" Checked="RadioButton_Checked">
+
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Database" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Test" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+
                 </StackPanel>
                 
                 
