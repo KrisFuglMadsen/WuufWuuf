@@ -216,22 +216,11 @@ namespace KennelCarolinekilde.Models.Repos
                         cmd.CommandType = CommandType.StoredProcedure;
 
 
-
-                        //cmd.Parameters.Add("@Color", System.Data.SqlDbType.NVarChar).Value = color;
-                        //cmd.Parameters.Add("@AD", System.Data.SqlDbType.NVarChar).Value = ad;
-                        //cmd.Parameters.Add("@HD", System.Data.SqlDbType.NVarChar).Value = hd;
-                        //cmd.Parameters.Add("@HZ", System.Data.SqlDbType.NVarChar).Value = hz;
-                        //cmd.Parameters.Add("@SP", System.Data.SqlDbType.NVarChar).Value = sp;
-                        ////cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = AgeDateOfBirth.ToString();
-                        //cmd.Parameters.Add("@DateOfBirth", System.Data.SqlDbType.NVarChar).Value = dogAgeDate;
-                        //cmd.Parameters.Add("@sex", System.Data.SqlDbType.NVarChar).Value = 't';
-
                         cmd.Parameters.Add("@color", System.Data.SqlDbType.NVarChar).Value = color;
                         cmd.Parameters.Add("@ad", System.Data.SqlDbType.NVarChar).Value = ad;
                         cmd.Parameters.Add("@hd", System.Data.SqlDbType.NVarChar).Value = hd;
                         cmd.Parameters.Add("@hz", System.Data.SqlDbType.NVarChar).Value = hz;
                         cmd.Parameters.Add("@sp", System.Data.SqlDbType.NVarChar).Value = sp;
-                        //cmd.parameters.add("@dateofbirth", system.data.sqldbtype.nvarchar).value = agedateofbirth.tostring();
                         cmd.Parameters.Add("@dateofbirth", System.Data.SqlDbType.NVarChar).Value = dogAgeDate;
                         cmd.Parameters.Add("@sex", System.Data.SqlDbType.NVarChar).Value = 't';
 
