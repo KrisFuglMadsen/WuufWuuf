@@ -4,9 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:KennelCarolinekilde.Views"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              mc:Ignorable="d" 
+             Background="Transparent"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Label x:Name="PedigreeNrLBL" Content="StambogNummer" HorizontalAlignment="Left" Margin="24,47,0,0" VerticalAlignment="Top" Width="130" Foreground="White"/>
+        <TextBox x:Name="PedigreeNrTXB" HorizontalAlignment="Left" Margin="163,51,0,0" TextWrapping="Wrap" Text="Stambognummer" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="NameLBL" Content="Navn" HorizontalAlignment="Left" Margin="24,86,0,0" VerticalAlignment="Top" Width="130" Foreground="White"/>
+        <TextBox x:Name="NameTXB" HorizontalAlignment="Left" Margin="163,90,0,0" TextWrapping="Wrap" Text="Navn" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="PedigreeNrLBL_Copy" Content="StambogNummer" HorizontalAlignment="Left" Margin="24,134,0,0" VerticalAlignment="Top" Width="130" Foreground="White"/>
+        <TextBox x:Name="PedigreeNrTXB_Copy" HorizontalAlignment="Left" Margin="163,138,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+
     </Grid>
 </UserControl>

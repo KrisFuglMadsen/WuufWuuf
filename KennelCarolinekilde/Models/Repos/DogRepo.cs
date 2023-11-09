@@ -29,7 +29,6 @@ namespace KennelCarolinekilde.Models.Repos
         {
             try
             {
-                //string connectionString = ConfigurationManager.ConnectionStrings["MyKey"].ConnectionString;
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
@@ -100,7 +99,6 @@ namespace KennelCarolinekilde.Models.Repos
         {
             try
             {
-                string connectionString = ConfigurationManager.ConnectionStrings["MyKey"].ConnectionString;
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
