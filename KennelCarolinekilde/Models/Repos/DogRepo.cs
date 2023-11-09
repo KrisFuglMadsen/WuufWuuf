@@ -29,7 +29,7 @@ namespace KennelCarolinekilde.Models.Repos
         {
             try
             {
-                string connectionString = ConfigurationManager.ConnectionStrings["MyKey"].ConnectionString;
+                //string connectionString = ConfigurationManager.ConnectionStrings["MyKey"].ConnectionString;
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
