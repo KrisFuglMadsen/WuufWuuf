@@ -256,5 +256,90 @@ namespace KennelCarolinekilde.Models.Repos
             MessageBox.Show(Dogs.ToString());
             return Dogs; 
         }
+
+        //-----Get Family tree test from chat GPT
+
+        public List<List<Dog>> GetFamilyTree(string pedigreeNr)
+        {
+            List<List<Dog>> familyTree = new List<List<Dog>>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand("GetFamilyTreeTEST", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@PedigreeNr", SqlDbType.NVarChar, 30) { Value = pedigreeNr });
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Dog dog = MapReaderToDog(reader);
+                            int generation = Convert.ToInt32(reader["Generation"]);
+
+                            // Ensure that the familyTree list has enough capacity
+                            while (familyTree.Count <= generation)
+                            {
+                                familyTree.Add(new List<Dog>());
+                            }
+
+                            familyTree[generation].Add(dog);
+                        }
+                    }
+                }
+            }
+
+            return familyTree;
+        }
+
+        private Dog MapReaderToDog(SqlDataReader reader)
+        {
+            //return new Dog
+            //{
+            //    Name = reader["Name"].ToString(),
+            //    PedigreeNr = reader["PedigreeNr"].ToString(),
+            //    DateOfBirth = DateOnly.FromDateTime((DateTime)reader["DateOfBirth"]),
+            //    Father = reader["Father"].ToString(),
+            //    Mother = reader["Mother"].ToString(),
+            //    HDIndex = Convert.ToDecimal(reader["HDIndex"]),
+            //    Sex = reader["Sex"].ToString(),
+            //    Color = reader["Color"].ToString(),
+            //    Dead = Convert.ToBoolean(reader["Dead"]),
+            //    BreedStatus = Convert.ToBoolean(reader["BreedStatus"]),
+            //    Owner = new Owner { OwnerId = Convert.ToInt32(reader["OwnerId"]) },
+            //    Image = reader["Image"].ToString(),
+            //    HD = reader["HD"].ToString(),
+            //    AD = reader["AD"].ToString(),
+            //    HZ = reader["HZ"].ToString(),
+            //    SP = reader["SP"].ToString(),
+            //    // Map other properties as needed
+            //};
+
+            return new Dog
+            {
+                Name = reader.IsDBNull(reader.GetOrdinal("Name")) ? string.Empty : reader["Name"].ToString(),
+                PedigreeNr = reader.IsDBNull(reader.GetOrdinal("PedigreeNr")) ? string.Empty : reader["PedigreeNr"].ToString(),
+                DateOfBirth = reader.IsDBNull(reader.GetOrdinal("DateOfBirth"))
+            ? DateOnly.MinValue
+            : DateOnly.FromDateTime((DateTime)reader["DateOfBirth"]),
+                Father = reader.IsDBNull(reader.GetOrdinal("Father")) ? string.Empty : reader["Father"].ToString(),
+                Mother = reader.IsDBNull(reader.GetOrdinal("Mother")) ? string.Empty : reader["Mother"].ToString(),
+                HDIndex = reader.IsDBNull(reader.GetOrdinal("HDIndex")) ? 0 : Convert.ToDecimal(reader["HDIndex"]),
+                Sex = reader.IsDBNull(reader.GetOrdinal("Sex")) ? string.Empty : reader["Sex"].ToString(),
+                Color = reader.IsDBNull(reader.GetOrdinal("Color")) ? string.Empty : reader["Color"].ToString(),
+                Dead = reader.IsDBNull(reader.GetOrdinal("Dead")) ? false : Convert.ToBoolean(reader["Dead"]),
+                BreedStatus = reader.IsDBNull(reader.GetOrdinal("BreedStatus")) ? false : Convert.ToBoolean(reader["BreedStatus"]),
+                Owner = new Owner { OwnerId = reader.IsDBNull(reader.GetOrdinal("OwnerId")) ? 0 : Convert.ToInt32(reader["OwnerId"]) },
+                Image = reader.IsDBNull(reader.GetOrdinal("Image")) ? string.Empty : reader["Image"].ToString(),
+                HD = reader.IsDBNull(reader.GetOrdinal("HD")) ? string.Empty : reader["HD"].ToString(),
+                AD = reader.IsDBNull(reader.GetOrdinal("AD")) ? string.Empty : reader["AD"].ToString(),
+                HZ = reader.IsDBNull(reader.GetOrdinal("HZ")) ? string.Empty : reader["HZ"].ToString(),
+                SP = reader.IsDBNull(reader.GetOrdinal("SP")) ? string.Empty : reader["SP"].ToString(),
+                // ... other properties ...
+            };
+        }
+
     }
 }

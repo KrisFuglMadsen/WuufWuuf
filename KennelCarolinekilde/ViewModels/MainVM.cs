@@ -58,6 +58,7 @@ namespace KennelCarolinekilde.ViewModels
         public ICommand ShowHomeViewCommand { get; }
         public ICommand ShowBreedingViewCommand { get; }
         public ICommand ShowDogViewCommand {  get; }
+        public ICommand ShowPedigreeCommand { get; }
 
         public MainVM()
         {
@@ -65,6 +66,7 @@ namespace KennelCarolinekilde.ViewModels
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowBreedingViewCommand = new ViewModelCommand(ExecuteShowBreedingViewCommand);
             ShowDogViewCommand = new ViewModelCommand(ExecuteShowDogViewCommand);
+            ShowPedigreeCommand = new ViewModelCommand(ExecuteShowPedigreeCommand);
 
             // Default view
             ExecuteShowHomeViewCommand(null);
@@ -88,6 +90,12 @@ namespace KennelCarolinekilde.ViewModels
             CurrentChildView = new DogVM();
             Caption = "Hunde";
             Icon = IconChar.Dog;
+        }
+        private void ExecuteShowPedigreeCommand(object obj)
+        {
+            CurrentChildView = new PedigreeVm();
+            Caption = "Book";
+            Icon = IconChar.BookMedical;
         }
     }
 }

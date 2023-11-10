@@ -29,6 +29,10 @@
         <DataTemplate DataType="{x:Type viewModel:DogVM}">
             <local:DogView/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:PedigreeVm}">
+            <local:Pedigree/>
+        </DataTemplate>
     </Window.Resources>
 
     <Border CornerRadius="10"
@@ -99,7 +103,8 @@
                     </RadioButton>
                     <!-- Pedigree btn -->
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}">
+                                 Tag="{StaticResource color2}"
+                                 Command="{Binding ShowPedigreeCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Clipboard" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Stamtavle" Style="{StaticResource menuButtonText}"/>
