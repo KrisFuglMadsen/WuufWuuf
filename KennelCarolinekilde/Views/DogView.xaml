@@ -76,7 +76,7 @@
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="Add_Dog_Btn" Style="{StaticResource ctaButton}" Margin="25,10" Content="Tilføj hund" HorizontalAlignment="Left" Click="Add_Dog_btn"/>
                 <Button x:Name="Delete_Dog_Btn" Style="{StaticResource ctaButton}" Margin="25,10" Content="Slet hund" HorizontalAlignment="Center" Click="Delete_Dog_Btn_Click"/>
-                <Button x:Name="Update_Dog_Btn" Style="{StaticResource ctaButton}" Margin="25,10" Content="Slet hund" HorizontalAlignment="Right" Click="Delete_Dog_Btn_Click"/>
+                <Button x:Name="Update_Dog_Btn" Style="{StaticResource ctaButton}" Margin="25,10" Content="Opdatere hund" HorizontalAlignment="Right" Click="Delete_Dog_Btn_Click"/>
 
             </StackPanel>
         </StackPanel>
