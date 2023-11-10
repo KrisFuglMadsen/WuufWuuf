@@ -5,8 +5,145 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:KennelCarolinekilde.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="800" d:DesignWidth="800">
     <Grid>
+        
+        
+
+        <StackPanel Height="800">
+            <TextBox Style="{StaticResource searchBar}" x:Name="ChosenDogText" Margin="0,10" />
+            <Button Style="{StaticResource ctaButton}" Content="Vælg Hund" Click="ChosenDogButton_Click" />
+                <!--  Selected Dog -->
+            <TextBlock Text="Valgte Partner" Margin="0, 30,0,10"  Style="{StaticResource headline2_alt}"/>
+            <Border Style="{StaticResource card}">
+                <TextBlock
+                    Width="380"                         
+                    TextAlignment="Center"
+                    Padding="3"
+                    TextWrapping="Wrap" 
+                    VerticalAlignment="Center"                    
+                   >
+                    Navn: Hundenavn        
+                    <LineBreak/>
+                    Køn: T
+                    <LineBreak/>
+                    Alder: 3
+                    <LineBreak/>
+                    Farve: Rød
+                    <LineBreak/>
+                    Sundhed: HD: 0, AD: 0, HZ: 0, SP: 0
+                    <LineBreak/> 
+                    Titler: Årets Hund 1946
+                </TextBlock>
+            </Border>
             
+            <TextBlock Text="Fiktivt Stamtræ" Margin="0,20,0,10"  Style="{StaticResource headline2_alt}"/>
+
+            <!-- 7 gen -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 40">
+                <Border Style="{StaticResource card}" Width="300" Padding="10">
+                    <TextBlock>
+                        far: navn for den 7. gen
+                    </TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource card}" Width="300" Padding="10" Margin="180, 0, 0, 0">
+                    <TextBlock>
+                        mor: navn for den 7. gen
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+
+            <!-- 6 gen -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 40">
+                <Border Style="{StaticResource card}" Width="300" Padding="10">
+                    <TextBlock>
+                       far: 2 navne for den 6. gen
+                    </TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource card}" Width="300" Padding="10" Margin="180, 0, 0, 0">
+                    <TextBlock>
+                        mor: 2 navne for den 6. gen
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+
+            <!-- 5 gen -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 40">
+                <Border Style="{StaticResource card}" Width="300" Padding="10">
+                    <TextBlock>
+                       far: 4 navne for den 5. gen
+                    </TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource card}" Width="300" Padding="10" Margin="180, 0, 0, 0">
+                    <TextBlock>
+                        mor: 4 navne for den 5. gen
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+
+            <!-- 4 gen -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 40">
+                <Border Style="{StaticResource card}" Width="300" Padding="10">
+                    <TextBlock>
+                        far: 8 navne for den 4. gen
+                    </TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource card}" Width="300" Padding="10" Margin="180, 0, 0, 0">
+                    <TextBlock>
+                        mor: 8 navne for den 4. gen
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+
+            <!-- 3 gen -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 40">
+                <Border Style="{StaticResource card}" Width="300" Padding="10">
+                    <TextBlock>
+                        far: 16 navne for den 3. gen
+                    </TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource card}" Width="300" Padding="10" Margin="180, 0, 0, 0">
+                    <TextBlock>
+                        mor: 16 navne for den 3. gen
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+
+            <!-- 2 gen -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 40">
+                <Border Style="{StaticResource card}" Width="300" Padding="10">
+                    <TextBlock>
+                        far: 32 navne for den 2. gen
+                    </TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource card}" Width="300" Padding="10" Margin="180, 0, 0, 0">
+                    <TextBlock>
+                        mor: 32 navne for den 2. gen
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+
+            <!-- 1 gen -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 40">
+                <Border Style="{StaticResource card}" Width="300" Padding="10">
+                    <TextBlock>
+                        far: 64 navne for den første gen
+                    </TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource card}" Width="300" Padding="10" Margin="180, 0, 0, 0">
+                    <TextBlock>
+                        mor: 64 navne for den første gen
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+
+        </StackPanel>
     </Grid>
 </UserControl>

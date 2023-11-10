@@ -9,6 +9,19 @@
              Background="Transparent"
              d:DesignHeight="700" d:DesignWidth="800">
     <Grid>
+        <fa:IconImage Icon="{Binding Icon}"
+                                          Height="20"
+                                          Width="20"
+                                          Foreground="{StaticResource plainTextColor3}"
+                                          Margin="35,0,10,0"/>
+
+        <TextBlock Text="{Binding Caption}"
+                                       Foreground="{StaticResource plainTextColor3}"
+                                       FontSize="16"
+                                       FontFamily="segoe ui"
+                                       FontWeight="Medium"
+                                       VerticalAlignment="Center"/>
+
 
         <Label x:Name="PedigreeNrLBL" Content="StambogNummer" HorizontalAlignment="Left" Margin="20,40,0,0" VerticalAlignment="Top" Width="130" Foreground="White"/>
         <TextBox x:Name="PedigreeNrTXB" HorizontalAlignment="Left" Margin="160,40,0,0" TextWrapping="Wrap" Text="Stambognummer" VerticalAlignment="Top" Width="120"/>
@@ -61,16 +74,9 @@
         
         <StackPanel Orientation="Vertical" Margin="300,40,0,0" >
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="Add_Dog_Btn" Style="{StaticResource ctaButton}" Margin="10,10" Content="Tilføj hund" HorizontalAlignment="Left" Click="Add_Dog_btn"/>
-                <Button x:Name="Delete_Dog_Btn" Style="{StaticResource ctaButton}" Margin="50,10" Content="Slet hund" HorizontalAlignment="Right" Click="Delete_Dog_Btn_Click"/>
-                <RadioButton Style="{StaticResource menuButton}" Tag="{StaticResource conBarColor3}" Width="50">
-                    <StackPanel Orientation="Horizontal">
-                        <fa:IconBlock Icon="Dog" Style="{StaticResource headline2}"/>
-
-
-                    </StackPanel>
-
-                </RadioButton>
+                <Button x:Name="Add_Dog_Btn" Style="{StaticResource ctaButton}" Margin="25,10" Content="Tilføj hund" HorizontalAlignment="Left" Click="Add_Dog_btn"/>
+                <Button x:Name="Delete_Dog_Btn" Style="{StaticResource ctaButton}" Margin="25,10" Content="Slet hund" HorizontalAlignment="Center" Click="Delete_Dog_Btn_Click"/>
+                <Button x:Name="Update_Dog_Btn" Style="{StaticResource ctaButton}" Margin="25,10" Content="Slet hund" HorizontalAlignment="Right" Click="Delete_Dog_Btn_Click"/>
 
             </StackPanel>
         </StackPanel>
