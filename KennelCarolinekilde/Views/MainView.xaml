@@ -25,6 +25,10 @@
         <DataTemplate DataType="{x:Type viewModel:BreedingVM}">
             <local:BreedingView/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:DogVM}">
+            <local:DogView/>
+        </DataTemplate>
     </Window.Resources>
 
     <Border CornerRadius="10"
@@ -86,7 +90,8 @@
                     </RadioButton>
                     <!-- Dogs btn -->
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color1}">
+                                 Tag="{StaticResource color1}"
+                                 Command="{Binding ShowDogViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Dog" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Hunde" Style="{StaticResource menuButtonText}"/>

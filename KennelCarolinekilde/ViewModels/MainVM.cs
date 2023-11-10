@@ -57,12 +57,14 @@ namespace KennelCarolinekilde.ViewModels
         // Commands
         public ICommand ShowHomeViewCommand { get; }
         public ICommand ShowBreedingViewCommand { get; }
+        public ICommand ShowDogViewCommand {  get; }
 
         public MainVM()
         {
             // Initialize commands
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowBreedingViewCommand = new ViewModelCommand(ExecuteShowBreedingViewCommand);
+            ShowDogViewCommand = new ViewModelCommand(ExecuteShowDogViewCommand);
 
             // Default view
             ExecuteShowHomeViewCommand(null);
@@ -81,6 +83,11 @@ namespace KennelCarolinekilde.ViewModels
             Caption = "Avlspartner";
             Icon = IconChar.Heart;
         }
-
+        private void ExecuteShowDogViewCommand(object obj)
+        {
+            CurrentChildView = new DogVM();
+            Caption = "Hunde";
+            Icon = IconChar.Dog;
+        }
     }
 }
