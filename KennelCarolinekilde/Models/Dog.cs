@@ -19,7 +19,7 @@ namespace KennelCarolinekilde.Models
         public string Father { get; set; }
         public string  Mother { get; set; }
         public decimal HDIndex { get; set; }
-        public string Sex { get; set; }
+        public string Sex { get; set; } = string.Empty;
         public string Color { get; set; }
         public bool Dead { get; set; }
         public bool BreedStatus { get; set; }
