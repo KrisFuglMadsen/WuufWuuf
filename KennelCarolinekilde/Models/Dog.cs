@@ -5,31 +5,33 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace KennelCarolinekilde.Models
 {
     public class Dog
     {
         //----------------Fields-------------------------------------
-        public string Name { get; private set; }
-        public string PedigreeNr { get; private set; }
-        public DateOnly DateOfBirth { get; private set; }
-        public string Father { get; private set; }
-        public string  Mother { get; private set; }
-        public decimal HDIndex { get; private set; }
-        public string Sex { get; private set; }
-        public string Color { get; private set; }
-        public bool Dead { get; private set; }
-        public bool BreedStatus { get; private set; }
-        public Owner Owner { get; private set; } = new Owner();
-        public string Image { get; private set; }
-        public string HD { get; private set; }
-        public string AD { get; private set; }
-        public string HZ { get; private set; }
-        public string SP { get; private set; }
+        public string Name { get; set; }
+        public string PedigreeNr { get; set; }
+        public DateOnly DateOfBirth { get; set; }
+        public string Father { get; set; }
+        public string  Mother { get; set; }
+        public decimal HDIndex { get; set; }
+        public string Sex { get; set; }
+        public string Color { get; set; }
+        public bool Dead { get; set; }
+        public bool BreedStatus { get; set; }
+        public Owner Owner { get; set; } = new Owner();
+        public string Image { get; set; }
+        public string HD { get; set; }
+        public string AD { get; set; }
+        public string HZ { get; set; }
+        public string SP { get; set; }
 
-        public List<Title> Titles { get; private set; }
-        public List<DKK_Title> DKK_Titles { get; private set; }
+        public List<Title> Titles { get; set; } = new List<Title>();
+        public List<DKK_Title> DKK_Titles { get; set; } = new List<DKK_Title>();
 
         //---------------------Constructor-----------------------
 
@@ -109,7 +111,20 @@ namespace KennelCarolinekilde.Models
 
         public override string ToString()
         {
-            return $"{this.Name}, {this.PedigreeNr}";
+            string titles = "";
+            foreach (Title title in Titles)
+            {
+                titles += title.ToString() + "\n";
+            }
+
+            foreach (DKK_Title title in DKK_Titles)
+            {
+                titles += title.ToString() + "\n";
+            }
+
+            return $"Navn: {this.Name} \n Stambogsnummer: {this.PedigreeNr} \n Køn: {this.Sex} \n Fødselsdato: {this.DateOfBirth}\n Farve: {this.Color}\n HD: {this.HD}, AD: {this.AD}, HZ: {this.HZ}, SP: {this.SP} \n Titler: {titles}";
+
+
         }
     }
 }

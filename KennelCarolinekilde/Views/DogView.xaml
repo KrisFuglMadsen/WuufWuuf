@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="KennelCarolinekilde.Views.DogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:KennelCarolinekilde.Views"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             mc:Ignorable="d" 
+             Background="Transparent"
+             d:DesignHeight="700" d:DesignWidth="800">
+    <Grid>
+        <fa:IconImage Icon="{Binding Icon}"
+                                          Height="20"
+                                          Width="20"
+                                          Foreground="{StaticResource plainTextColor3}"
+                                          Margin="35,0,10,0"/>
+
+        <TextBlock Text="{Binding Caption}"
+                                       Foreground="{StaticResource plainTextColor3}"
+                                       FontSize="16"
+                                       FontFamily="segoe ui"
+                                       FontWeight="Medium"
+                                       VerticalAlignment="Center"/>
+
+
+        <Label x:Name="PedigreeNrLBL" Content="StambogNummer" HorizontalAlignment="Left" Margin="20,40,0,0" VerticalAlignment="Top" Width="130" Foreground="White"/>
+        <TextBox x:Name="PedigreeNrTXB" HorizontalAlignment="Left" Margin="160,40,0,0" TextWrapping="Wrap" Text="Stambognummer" VerticalAlignment="Top" Width="120"/>
+
+        <Label x:Name="NameLBL" Content="Navn" HorizontalAlignment="Left" Margin="20,80,0,0" VerticalAlignment="Top" Width="130" Foreground="White"/>
+        <TextBox x:Name="NameTXB" HorizontalAlignment="Left" Margin="160,80,0,0" TextWrapping="Wrap" Text="Navn" VerticalAlignment="Top" Width="120"/>
+
+        <Label x:Name="BirthDayLBL" Content="fødselsdag" HorizontalAlignment="Left" Margin="20,120,0,0" VerticalAlignment="Top" Width="130" Foreground="White"/>
+        <TextBox x:Name="BirthDayTXB" HorizontalAlignment="Left" Margin="160,120,0,0" TextWrapping="Wrap" Text="fødseldag" VerticalAlignment="Top" Width="120"/>
+
+        <Label x:Name="FatherLBL" Content="Far" HorizontalAlignment="Left" Margin="20,160,0,0" VerticalAlignment="Top" Width="130" Foreground="White"/>
+        <TextBox x:Name="FatherTXB" HorizontalAlignment="Left" Margin="160,160,0,0" TextWrapping="Wrap" Text="Far" VerticalAlignment="Top" Width="120"/>
+
+        <Label x:Name="MotherLBL" Content="Mor" HorizontalAlignment="Left" Margin="20,200,0,0" VerticalAlignment="Top" Width="130" Foreground="White"/>
+        <TextBox x:Name="MotherTXB" HorizontalAlignment="Left" Margin="160,200,0,0" TextWrapping="Wrap" Text="Mor" VerticalAlignment="Top" Width="120"/>
+
+        <Label x:Name="HDIndexLBL" Content="HD Index" HorizontalAlignment="Left" Margin="20,240,0,0" VerticalAlignment="Top" Width="130" Foreground="White"/>
+        <TextBox x:Name="HDIndexTXB" HorizontalAlignment="Left" Margin="160,240,0,0" TextWrapping="Wrap" Text="HD Index" VerticalAlignment="Top" Width="120"/>
+
+        <Label x:Name="SexLBL" Content="Køn" HorizontalAlignment="Left" Margin="20,280,0,0" VerticalAlignment="Top" Width="130" Foreground="White"/>
+        <TextBox x:Name="SexTXB" HorizontalAlignment="Left" Margin="160,280,0,0" TextWrapping="Wrap" Text="køn" VerticalAlignment="Top" Width="120"/>
+
+        <Label x:Name="ColorLBL" Content="Farve" HorizontalAlignment="Left" Margin="20,320,0,0" VerticalAlignment="Top" Width="130" Foreground="White"/>
+        <TextBox x:Name="ColorTXB" HorizontalAlignment="Left" Margin="160,320,0,0" TextWrapping="Wrap" Text="Farve" VerticalAlignment="Top" Width="120"/>
+
+        <Label x:Name="DeadLBL" Content="Død" HorizontalAlignment="Left" Margin="20,360,0,0" VerticalAlignment="Top" Width="130" Foreground="White"/>
+        <TextBox x:Name="DeadTXB" HorizontalAlignment="Left" Margin="160,360,0,0" TextWrapping="Wrap" Text="Død" VerticalAlignment="Top" Width="120"/>
+
+        <Label x:Name="BreedStatusLBL" Content="AvlStatus" HorizontalAlignment="Left" Margin="20,400,0,0" VerticalAlignment="Top" Width="130" Foreground="White"/>
+        <TextBox x:Name="BreedStatusTXB" HorizontalAlignment="Left" Margin="160,400,0,0" TextWrapping="Wrap" Text="AvlStatus" VerticalAlignment="Top" Width="120"/>
+
+        <Label x:Name="OwnerLBL" Content="Ejer" HorizontalAlignment="Left" Margin="20,440,0,0" VerticalAlignment="Top" Width="130" Foreground="White"/>
+        <TextBox x:Name="OwnerTXB" HorizontalAlignment="Left" Margin="160,440,0,0" TextWrapping="Wrap" Text="Ejer" VerticalAlignment="Top" Width="120"/>
+
+        <Label x:Name="ImageLBL" Content="Billed" HorizontalAlignment="Left" Margin="20,480,0,0" VerticalAlignment="Top" Width="130" Foreground="White"/>
+        <TextBox x:Name="ImageTXB" HorizontalAlignment="Left" Margin="160,480,0,0" TextWrapping="Wrap" Text="Billed" VerticalAlignment="Top" Width="120"/>
+        
+        <Label x:Name="HDLBL" Content="HD" HorizontalAlignment="Left" Margin="20,520,0,0" VerticalAlignment="Top" Width="130" Foreground="White"/>
+        <TextBox x:Name="HDTXB" HorizontalAlignment="Left" Margin="160,520,0,0" TextWrapping="Wrap" Text="HD" VerticalAlignment="Top" Width="120"/>
+        
+        <Label x:Name="ADLBL" Content="AD" HorizontalAlignment="Left" Margin="20,560,0,0" VerticalAlignment="Top" Width="130" Foreground="White"/>
+        <TextBox x:Name="ADTXB" HorizontalAlignment="Left" Margin="160,560,0,0" TextWrapping="Wrap" Text="AD" VerticalAlignment="Top" Width="120"/>
+        
+        <Label x:Name="HZ_LBL" Content="HZ" HorizontalAlignment="Left" Margin="20,600,0,0" VerticalAlignment="Top" Width="130" Foreground="White"/>
+        <TextBox x:Name="HZ_TXB" HorizontalAlignment="Left" Margin="160,600,0,0" TextWrapping="Wrap" Text="HZ" VerticalAlignment="Top" Width="120"/>
+        
+        <Label x:Name="SP_LBL" Content="SP" HorizontalAlignment="Left" Margin="20,640,0,0" VerticalAlignment="Top" Width="130" Foreground="White"/>
+        <TextBox x:Name="SP_TXB" HorizontalAlignment="Left" Margin="160,640,0,0" TextWrapping="Wrap" Text="SP" VerticalAlignment="Top" Width="120"/>
+        
+        
+        <StackPanel Orientation="Vertical" Margin="300,40,0,0" >
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="Add_Dog_Btn" Style="{StaticResource ctaButton}" Margin="25,10" Content="Tilføj hund" HorizontalAlignment="Left" Click="Add_Dog_btn"/>
+                <Button x:Name="Delete_Dog_Btn" Style="{StaticResource ctaButton}" Margin="25,10" Content="Slet hund" HorizontalAlignment="Center" Click="Delete_Dog_Btn_Click"/>
+                <Button x:Name="Update_Dog_Btn" Style="{StaticResource ctaButton}" Margin="25,10" Content="Opdatere hund" HorizontalAlignment="Right" Click="Delete_Dog_Btn_Click"/>
+
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

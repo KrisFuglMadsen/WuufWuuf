@@ -19,11 +19,13 @@ namespace KennelCarolinekilde.ViewModels
             _executeAction = executeAction;
             _canExecuteAction = null;
         }
+
         public ViewModelCommand(Action<object> executeAction, Predicate<object> canExecuteAction)
         {
             _executeAction = executeAction;
             _canExecuteAction = canExecuteAction;
         }
+
         //Events
         public event EventHandler CanExecuteChanged             //we use the CommandManger keyword, this checks if the value of the CanExecuteAction is changed.
         {

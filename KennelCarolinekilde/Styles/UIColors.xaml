@@ -39,7 +39,4 @@
     <SolidColorBrush x:Key="conBarColor2" Color="#fab1a0"/>
     <SolidColorBrush x:Key="conBarColor3" Color="#55efc4"/>
 
-
-
-
 </ResourceDictionary>

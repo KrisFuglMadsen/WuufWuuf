@@ -9,7 +9,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/UIColors.xaml"/>
                 <ResourceDictionary Source="/Styles/ButtonStyles.xaml"/>
-                
+                <ResourceDictionary Source="/Styles/Generic.xaml"/>
+                <ResourceDictionary Source="/Styles/Fonts.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

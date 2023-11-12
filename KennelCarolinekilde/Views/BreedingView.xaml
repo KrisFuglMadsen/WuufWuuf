@@ -1,0 +1,234 @@
+﻿<UserControl x:Class="KennelCarolinekilde.Views.BreedingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"        
+             xmlns:local="clr-namespace:KennelCarolinekilde.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="1200" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Search Bar-->
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
+            <TextBox Style="{StaticResource searchBar}" x:Name="SearchDogText"/>
+            <Button Style="{StaticResource ctaButton}" Content="Vælg Hund" Click="SearchDogButton_Click" />
+        </StackPanel>
+        
+        <!-- Selcted Dog and Search-->
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Height="250" Margin="0,25,0,25" HorizontalAlignment="Center">
+            <!-- Selected dog -->
+            <Border Style="{StaticResource card}">
+                <TextBlock
+                    Width="380"                         
+                    TextAlignment="Center"
+                    Padding="3"
+                    TextWrapping="Wrap" 
+                    VerticalAlignment="Center"        
+                    x:Name="SelectedDog"
+                    Text=""
+                   >
+                </TextBlock>
+            </Border>
+            
+            <!-- Search Criteria box -->
+            <Border Style="{StaticResource card}" Margin="10,0,0,0">
+                <StackPanel Width="380" Orientation="Vertical">
+                    <TextBlock Margin="0,10,0,20" TextAlignment="Center" Text="Kriterier for partner" Style="{StaticResource headline2}" />
+                    <!-- Search Criteria -->
+                    <StackPanel Orientation="Horizontal">
+                        <!-- Health -->
+                        <StackPanel Orientation="Vertical" Width="120">
+                            <TextBlock TextAlignment="Center" Text="Sundhed" Margin="0,0,0,10" Style="{StaticResource headline2}"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="AD" Width="30" />
+                                <TextBox Text="" Width="80" x:Name="PartnerCriteria_AD" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <Label Content="HD" Width="30" />
+                                <TextBox Text="" Width="80" x:Name="PartnerCriteria_HD"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <Label Content="HZ" Width="30"/>
+                                <TextBox Text="" Width="80" x:Name="PartnerCriteria_HZ" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <Label Content="SP" Width="30"/>
+                                <TextBox Text="" Width="80" x:Name="PartnerCriteria_SP" />
+                            </StackPanel>
+                        </StackPanel>
+                        <!-- Color -->
+                        <StackPanel Orientation="Vertical" Width="120" Margin="10,0,0,0">
+                            <TextBlock TextAlignment="Center" Text="Farve" Margin="0,0,0,10" Style="{StaticResource headline2}"/>
+                            <CheckBox Content="Tiger" x:Name="SearchPartner_Color_Tiger" />
+                            <CheckBox Content="Rød" Margin="0,10,0,0" x:Name="SearchPartner_Color_Red" />
+                            <CheckBox Content="Hvid" Margin="0,10,0,0" x:Name="SearchPartner_Color_White" />
+                        </StackPanel>
+                        <!-- Age -->
+                        <StackPanel Orientation="Vertical" Width="120">
+                            <TextBlock TextAlignment="Center" Text="Alder" Margin="0,0,0,10" Style="{StaticResource headline2}"/>
+                            <TextBox Text="" x:Name="PartnerCriteria_Age"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Button Style="{StaticResource ctaButton}" Margin="0,10" Content="Find Partner" Click="SearchPartnerCriteria_Click"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <!-- Possible Partners-->
+        <StackPanel Grid.Row="2" Orientation="Vertical">
+            <TextBlock Text="Mulige Partnere" Style="{StaticResource headline2_alt}"/> 
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center">
+
+                <DataGrid x:Name="CriteriaDogs"/>
+            </StackPanel>
+            
+            
+        </StackPanel>
+        
+        <!--  Selected Partner -->
+        <StackPanel Grid.Row="3" Height="180">
+            <TextBlock Text="Valgte Partner" Margin="0, 30,0,10"  Style="{StaticResource headline2_alt}"/>
+            <Border Style="{StaticResource card}">
+                <TextBlock
+                    Width="380"                         
+                    TextAlignment="Center"
+                    Padding="3"
+                    TextWrapping="Wrap" 
+                    VerticalAlignment="Center"                    
+                   >
+                    Navn: Hundenavn        
+                    <LineBreak/>
+                    Køn: T
+                    <LineBreak/>
+                    Alder: 3
+                    <LineBreak/>
+                    Farve: Rød
+                    <LineBreak/>
+                    Sundhed: HD: 0, AD: 0, HZ: 0, SP: 0
+                    <LineBreak/> 
+                    Titler: Årets Hund 1946
+                </TextBlock>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Height="600">
+            <TextBlock Text="Fiktivt Stamtræ" Margin="0,20,0,10"  Style="{StaticResource headline2_alt}"/>
+            
+            <!-- 7 gen -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 40">
+                <Border Style="{StaticResource card}" Width="300" Padding="10">
+                    <TextBlock>
+                        far: navn for den 7. gen
+                    </TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource card}" Width="300" Padding="10" Margin="180, 0, 0, 0">
+                    <TextBlock>
+                        mor: navn for den 7. gen
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+
+            <!-- 6 gen -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 40">
+                <Border Style="{StaticResource card}" Width="300" Padding="10">
+                    <TextBlock>
+                       far: 2 navne for den 6. gen
+                    </TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource card}" Width="300" Padding="10" Margin="180, 0, 0, 0">
+                    <TextBlock>
+                        mor: 2 navne for den 6. gen
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+
+            <!-- 5 gen -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 40">
+                <Border Style="{StaticResource card}" Width="300" Padding="10">
+                    <TextBlock>
+                       far: 4 navne for den 5. gen
+                    </TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource card}" Width="300" Padding="10" Margin="180, 0, 0, 0">
+                    <TextBlock>
+                        mor: 4 navne for den 5. gen
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+
+            <!-- 4 gen -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 40">
+                <Border Style="{StaticResource card}" Width="300" Padding="10">
+                    <TextBlock>
+                        far: 8 navne for den 4. gen
+                    </TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource card}" Width="300" Padding="10" Margin="180, 0, 0, 0">
+                    <TextBlock>
+                        mor: 8 navne for den 4. gen
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+
+            <!-- 3 gen -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 40">
+                <Border Style="{StaticResource card}" Width="300" Padding="10">
+                    <TextBlock>
+                        far: 16 navne for den 3. gen
+                    </TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource card}" Width="300" Padding="10" Margin="180, 0, 0, 0">
+                    <TextBlock>
+                        mor: 16 navne for den 3. gen
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+
+            <!-- 2 gen -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 40">
+                <Border Style="{StaticResource card}" Width="300" Padding="10">
+                    <TextBlock>
+                        far: 32 navne for den 2. gen
+                    </TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource card}" Width="300" Padding="10" Margin="180, 0, 0, 0">
+                    <TextBlock>
+                        mor: 32 navne for den 2. gen
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+
+            <!-- 1 gen -->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0, 0, 0, 40">
+                <Border Style="{StaticResource card}" Width="300" Padding="10">
+                    <TextBlock>
+                        far: 64 navne for den første gen
+                    </TextBlock>
+                </Border>
+
+                <Border Style="{StaticResource card}" Width="300" Padding="10" Margin="180, 0, 0, 0">
+                    <TextBlock>
+                        mor: 64 navne for den første gen
+                    </TextBlock>
+                </Border>
+            </StackPanel>
+
+        </StackPanel>
+    
+    </Grid>
+
+
+</UserControl>

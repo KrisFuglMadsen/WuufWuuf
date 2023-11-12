@@ -14,6 +14,28 @@
         Title="MainView" Height="700" Width="1300">
 
     <Window.DataContext>
+        <viewModel:MainVM/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModel:HomeVM}">
+            <local:HomeView/>
+        </DataTemplate> 
+
+        <DataTemplate DataType="{x:Type viewModel:BreedingVM}">
+            <local:BreedingView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:DogVM}">
+            <local:DogView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:PedigreeVm}">
+            <local:Pedigree/>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
     
@@ -43,12 +65,11 @@
                 <ColumnDefinition Width="250"/>
                 <!--Content section-->
                 <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions> 
-            
+            </Grid.ColumnDefinitions>
+
             <!--Navigation Menu-->
             <Border CornerRadius="10,0,0,10"
                     Grid.Column="0">
-
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
                         <GradientStop Color="{StaticResource secondaryBackColor1}" Offset="0"/>
@@ -57,13 +78,11 @@
                 </Border.Background>
 
                 <StackPanel>
-                    
                     <!--Logo-->
                     <StackPanel Orientation="Horizontal"
                             Height="35"
                             Margin="15,25,0,40">
-                        <fa:IconImage Icon="paw"/>                        
-
+                        <fa:IconImage Icon="paw"/>
                         <TextBlock Text="Kennel Carolinekilde´s"
                                    Foreground="{StaticResource titleColor1}"
                                    FontSize="16"
@@ -71,46 +90,57 @@
                                    FontWeight="Medium"
                                    VerticalAlignment="Center"
                                    Margin="10,0,0,0"/>
-
                     </StackPanel>
-                    
-                    <!--Menu Buttons-->
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color1}">
 
+                    <!--Menu Buttons-->
+                    
+                    <!-- Home btn -->
+                    <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color1}"
+                                 IsChecked="True"
+                                 Command="{Binding ShowHomeViewCommand}"
+                                 >
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Hjem" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <!-- Dogs btn -->
+                    <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color1}"
+                                 Command="{Binding ShowDogViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Dog" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Hunde" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>                        
+                        </StackPanel>
                     </RadioButton>
-
+                    <!-- Pedigree btn -->
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}">
-
+                                 Tag="{StaticResource color2}"
+                                 Command="{Binding ShowPedigreeCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Clipboard" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Stamtavle" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
-
+                    <!-- Breeding btn -->
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color3}">
-
+                                 Tag="{StaticResource color3}"
+                                 Command="{Binding ShowBreedingViewCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="MagnifyingGlass" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Find avlspartner" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
-
+                    <!-- Owners btn -->
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color5}">
-
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="User" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Ejere" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
-
+                    <!-- Database btn -->
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color6}"
                                  Command="{Binding ShowDBViewCommand}">
@@ -120,20 +150,25 @@
                             <TextBlock Text="Database" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
-
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color6}" Checked="RadioButton_Checked">
-
+                    
+                    <!-- test for dogs-->
+                    <RadioButton x:Name="DogCreateTest" Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource controlButtonIcon}" Checked="CreateDogTestbtn_clicked">
                         <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Database" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Test" Style="{StaticResource menuButtonText}"/>
+                            <fa:IconImage Icon="NoteSticky" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Dog Create Test" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+
+                    <RadioButton x:Name="DogDeleteTest" Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource controlButtonIcon}" Checked="DeleteDaogTestbtn_clicked">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="NoteSticky" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock x:Name="DogDeleteTest1" Text="Dog Delete Test" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
 
                 </StackPanel>
-                
-                
-                
             </Border>
 
             <!--Main Section-->
@@ -146,19 +181,19 @@
                         <GradientStop Color="{StaticResource primaryBackColor2}" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <!--Control bar-->
+                            <RowDefinition Height="25"/>
+                            <!--Header / Caption-->
+                            <RowDefinition Height="35"/>
+                            <!--Content section / Child views-->
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                <Grid>
-                    <Grid.RowDefinitions>
                         <!--Control bar-->
-                        <RowDefinition Height="25"/>
-                        <!--Header / Caption-->
-                        <RowDefinition Height="35"/>
-                        <!--Content section / Child views-->
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    
-                    <!--Control bar-->
-                    <StackPanel x:Name="pnlControlBar"
+                        <StackPanel x:Name="pnlControlBar"
                                 Grid.Row="0"
                                 Orientation="Horizontal"
                                 FlowDirection="RightToLeft"
@@ -167,56 +202,57 @@
                                 MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
                                 MouseEnter="pnlControlBar_MouseEnter">
 
-                        <Button x:Name="btnClose"
+                            <Button x:Name="btnClose"
                                 Style="{StaticResource controlButton}"
                                 Tag="{StaticResource conBarColor1}"
                                 Click="btnClose_Click">
-                            <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"/>
-                        </Button>
+                                <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"/>
+                            </Button>
 
-                        <Button x:Name="btnMaximize"
+                            <Button x:Name="btnMaximize"
                                 Style="{StaticResource controlButton}"
                                 Tag="{StaticResource conBarColor2}"
                                 Click="btnMaximize_Click">
-                            <fa:IconImage Icon="Square" Style="{StaticResource controlButtonIcon}"/>
-                        </Button>
+                                <fa:IconImage Icon="Square" Style="{StaticResource controlButtonIcon}"/>
+                            </Button>
 
-                        <Button x:Name="btnMinimize"
+                            <Button x:Name="btnMinimize"
                                 Style="{StaticResource controlButton}"
                                 Tag="{StaticResource conBarColor3}"
                                 Click="btnMinimize_Click">
-                            <fa:IconImage Icon="WindowMinimize" Width="12" Style="{StaticResource controlButtonIcon}"/>
-                        </Button>
+                                <fa:IconImage Icon="WindowMinimize" Width="12" Style="{StaticResource controlButtonIcon}"/>
+                            </Button>
 
-                    </StackPanel>
+                        </StackPanel>
 
-                    <!--Header / Caption-->
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        
-                        <!--Caption-->
-                        <StackPanel Grid.Column="0"
+                        <!--Header / Caption-->
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+                            <!--Caption-->
+                            <StackPanel Grid.Column="0"
                                     Orientation="Horizontal"
                                     VerticalAlignment="Center">
-                            
-                            <fa:IconImage Icon="{Binding Icon}"
+
+                                <fa:IconImage Icon="{Binding Icon}"
                                           Height="20"
                                           Width="20"
                                           Foreground="{StaticResource plainTextColor3}"
                                           Margin="35,0,10,0"/>
-                            <TextBlock Text="{Binding Caption}"
+
+                                <TextBlock Text="{Binding Caption}"
                                        Foreground="{StaticResource plainTextColor3}"
                                        FontSize="16"
                                        FontFamily="segoe ui"
                                        FontWeight="Medium"
                                        VerticalAlignment="Center"/>
-                        </StackPanel>
-                        
-                        <!--User options-->
-                        <StackPanel Grid.Column="1"
+                            </StackPanel>
+
+                            <!--User options-->
+                            <StackPanel Grid.Column="1"
                                     Orientation="Horizontal"
                                     FlowDirection="RightToLeft"
                                     VerticalAlignment="Center"
@@ -245,12 +281,6 @@
                 </Grid>
 
             </Border>
-
-
         </Grid>
-        
-        
-    </Border>  
-    
-  
+    </Border>    
 </Window>
