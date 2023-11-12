@@ -26,5 +26,12 @@ namespace KennelCarolinekilde.ViewModels
             return dogRepo.CreateDog(pedigreeNr, name, father, mother, dateOfBirth, sex, hdIndex, color, dead, breedStatus, image, ownerId, hd, ad, hz, sp);
         }
         //TODO finish the overloading. Owner image and medical is missing 
+
+        public Dog GetSingleDog(string search)
+        {
+            DogRepo dogRepo = new DogRepo();
+            Dog dog = dogRepo.GetSingleDog(search);
+            return dog;
+        }
     }
 }
