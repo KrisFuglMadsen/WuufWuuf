@@ -1,4 +1,5 @@
 ﻿using ExcelDataReader;
+using KennelCarolinekilde.ViewModels;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -25,91 +26,126 @@ namespace KennelCarolinekilde.Views
     /// </summary>
     public partial class DBView : UserControl
     {
+        private DBViewModel _DBViewModel;
         public DBView()
         {
             InitializeComponent();
-        }
-
-        DataTable dataTable;
-        private void btnBrowse_Click(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Excel Files|*.xlsx;*.xls";
-
-            if (openFileDialog.ShowDialog() == true)
-            {
-                txtFileName.Text = openFileDialog.FileName;
-
-                using (var stream = File.Open(openFileDialog.FileName, FileMode.Open, FileAccess.Read))
-                {
-                    System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
-                    using (IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream))
-                    {
-                        //read the excel data and configure to treat the first row as headers
-                        DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration
-                        {
-                            ConfigureDataTable = _ => new ExcelDataTableConfiguration
-                            {
-                                UseHeaderRow = true //Treat the first row as headers
-                            }
-                        });
-
-                        if (result.Tables.Count > 0)
-                        {
-                            dataTable = result.Tables[0]; // Assuming the data is in the first (and only) sheet
-
-                            ExcelFilePresenter.ItemsSource = dataTable.DefaultView;
-                        }
-                        else
-                        {
-                            MessageBox.Show("No data found in the Excel file.");
-                        }
-                    }
-                }
-            }
+            _DBViewModel = new DBViewModel();
         }
         
-        private void btnUpdateDB_Click(object sender, RoutedEventArgs e)
+        //Brows and Load Excel file layed (MVC)
+        private void btnLoadData_Click(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Excel Files|*.xlsx;*.xls";
 
-            // call a method in the ViewModel Layer ---> wich calls a method in Model layer to connect to the DB. 
-
-            string connectionString = "Server = 10.56.8.36; Database = DB_F23_TEAM_02; User ID = DB_F23_TEAM_02; Password = TEAMDB_DB_02; TrustServerCertificate = true;"; ;
-
-            try
+            if(ofd.ShowDialog() == true) 
             {
-                if (dataTable != null)
-                {
-                    using (SqlConnection conn = new SqlConnection(connectionString))
-                    {
-                        conn.Open();
+                string filePath = ofd.FileName;
+                txtFileName.Text = filePath;
 
-                        using (SqlCommand command = new SqlCommand("dbo.InsertDogs", conn))
-                        {
-                            command.CommandType = CommandType.StoredProcedure;
+                //call the DBViewModel to load data
+                DataTable data = _DBViewModel.LoadDataFromExcel(filePath);
 
-                            SqlParameter dogsParamter = command.Parameters.AddWithValue("@Dogs", dataTable);
-                            dogsParamter.SqlDbType = SqlDbType.Structured;
-                            dogsParamter.TypeName = "dbo.DogType";
-
-                            command.ExecuteNonQuery();
-
-                            MessageBox.Show(" Data Inserted Into the DB");
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("No Data to update");
-                }
+                ExcelFilePresenter.ItemsSource = data.DefaultView;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error" + ex.Message);
-
-            }
-
-
         }
+
+        private void btnUpdateDB_Click(object sender, RoutedEventArgs e) 
+        {
+            //Get the data from the DataGrid (ExcelFilePresenter)
+            DataTable data = ((DataView)ExcelFilePresenter.ItemsSource).ToTable();
+
+            //check if there is data in the DataGrid
+            if (data.Rows.Count > 0) 
+            {               
+                // Call the DBViewModel
+                _DBViewModel.UpdateDatabase(data);
+            }
+           
+        }
+
+
+        //DataTable dataTable;
+        //private void btnBrowse_Click(object sender, RoutedEventArgs e)
+        //{
+        //    OpenFileDialog openFileDialog = new OpenFileDialog();
+        //    openFileDialog.Filter = "Excel Files|*.xlsx;*.xls";
+
+        //    if (openFileDialog.ShowDialog() == true)
+        //    {
+        //        txtFileName.Text = openFileDialog.FileName;
+
+        //        using (var stream = File.Open(openFileDialog.FileName, FileMode.Open, FileAccess.Read))
+        //        {
+        //            System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+        //            using (IExcelDataReader reader = ExcelReaderFactory.CreateReader(stream))
+        //            {
+        //                //read the excel data and configure to treat the first row as headers
+        //                DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration
+        //                {
+        //                    ConfigureDataTable = _ => new ExcelDataTableConfiguration
+        //                    {
+        //                        UseHeaderRow = true //Treat the first row as headers
+        //                    }
+        //                });
+
+        //                if (result.Tables.Count > 0)
+        //                {
+        //                    dataTable = result.Tables[0]; // Assuming the data is in the first (and only) sheet                        
+
+        //                    ExcelFilePresenter.ItemsSource = dataTable.DefaultView;
+        //                }
+        //                else
+        //                {
+        //                    MessageBox.Show("No data found in the Excel file.");
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
+
+        //private void btnUpdateDB_Click(object sender, RoutedEventArgs e)
+        //{
+
+        //    // call a method in the ViewModel Layer ---> wich calls a method in Model layer to connect to the DB. 
+
+        //    string connectionString = "Server = 10.56.8.36; Database = DB_F23_TEAM_02; User ID = DB_F23_TEAM_02; Password = TEAMDB_DB_02; TrustServerCertificate = true;"; ;
+
+        //    try
+        //    {
+        //        if (dataTable != null)
+        //        {
+        //            using (SqlConnection conn = new SqlConnection(connectionString))
+        //            {
+        //                conn.Open();
+
+        //                using (SqlCommand command = new SqlCommand("dbo.InsertDogs", conn))
+        //                {
+        //                    command.CommandType = CommandType.StoredProcedure;
+
+        //                    SqlParameter dogsParamter = command.Parameters.AddWithValue("@Dogs", dataTable);
+        //                    dogsParamter.SqlDbType = SqlDbType.Structured;
+        //                    dogsParamter.TypeName = "dbo.DogType";
+
+        //                    command.ExecuteNonQuery();
+
+        //                    MessageBox.Show(" Data Inserted Into the DB");
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            MessageBox.Show("No Data to update");
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error" + ex.Message);
+
+        //    }
+
+
+        //}
     }
 }

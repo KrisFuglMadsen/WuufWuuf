@@ -25,7 +25,7 @@ namespace KennelCarolinekilde.ViewModels
             _canExecuteAction = canExecuteAction;
         }
         //Events
-        public event EventHandler CanExecuteChanged             //we use the CommanManger keyword, this checks if the value of the CanExecuteAction is changed.
+        public event EventHandler CanExecuteChanged             //we use the CommandManger keyword, this checks if the value of the CanExecuteAction is changed.
         {
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
