@@ -17,5 +17,6 @@ namespace KennelCarolinekilde.ViewModels
             Dog dog = dogRepo.GetSingleDog(search);
             return dog;
         }
+
     }
 }

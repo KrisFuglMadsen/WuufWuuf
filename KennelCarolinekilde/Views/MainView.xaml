@@ -17,10 +17,12 @@
         <viewModel:MainVM/>
     </Window.DataContext>
 
+
+    <!--to show the content of each childView we need to add them as window resources-->
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModel:HomeVM}">
             <local:HomeView/>
-        </DataTemplate> 
+        </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModel:BreedingVM}">
             <local:BreedingView/>
@@ -33,20 +35,12 @@
         <DataTemplate DataType="{x:Type viewModel:PedigreeVm}">
             <local:Pedigree/>
         </DataTemplate>
-    </Window.Resources>
-
-    <Window.DataContext>
-        <viewModel:MainViewModel/>
-    </Window.DataContext>
-    
-    <!--to show the content of each childView we need to add them as window resources-->
-    <Window.Resources>
 
         <DataTemplate DataType="{x:Type viewModel:DBViewModel}">
             <local:DBView/>
-        </DataTemplate>
-        
-    </Window.Resources>
+        </DataTemplate>        
+    </Window.Resources>  
+  
 
     <Border CornerRadius="10"
             BorderThickness="1">
@@ -181,6 +175,7 @@
                         <GradientStop Color="{StaticResource primaryBackColor2}" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
+
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -258,28 +253,28 @@
                                     VerticalAlignment="Center"
                                     Margin="0,0,10,0">
 
-                            <Button Style="{StaticResource iconButton}"
+                                <Button Style="{StaticResource iconButton}"
                                     Tag="{StaticResource color7}">
-                                <fa:IconImage Icon="AnglesDown" Style="{StaticResource iconButtonIcon}"/>
+                                    <fa:IconImage Icon="AnglesDown" Style="{StaticResource iconButtonIcon}"/>
 
-                            </Button>
-                            
-                            <!--Add more user options here-->
-                            
-                        </StackPanel>                       
-                        
-                        
-                    </Grid>
-                    
-                    <!--Content section / child views-->
-                    <ContentControl Content="{Binding CurrentChildView}"
+                                </Button>
+
+                                <!--Add more user options here-->
+
+                            </StackPanel>
+
+
+                        </Grid>
+
+                        <!--Content section / child views-->
+                        <ContentControl Content="{Binding CurrentChildView}"
                                     Grid.Row="2"
                                     Margin="25"/>
 
-                    <!--create and add child views and upholde MVVM we need a ViewModelBase Class (14 min https://www.youtube.com/watch?v=76JLBZJR5gE )-->
 
-                </Grid>
 
+                    </Grid>
+                </ScrollViewer>
             </Border>
         </Grid>
     </Border>    
